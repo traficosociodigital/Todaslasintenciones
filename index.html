@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Todas las Intenciones</title>
+<meta name="description" content="Automatización e inteligencia artificial para empresas que ya no pueden crecer copiando y pegando. Diagnóstico de procesos, integración de sistemas y flujos que funcionan solos.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080B08">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/og-image.jpg">
+<meta property="og:image" content="assets/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tu equipo sostiene el sistema. Debería ser al revés.">
+<meta property="og:description" content="Automatizamos los procesos invisibles que hoy consumen el tiempo de tu gente. Diagnóstico en 45 minutos.">
+<meta property="og:locale" content="es_ES">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --ground:#080B08;
+  --ground-2:#0C100C;
+  --soil:#111610;
+  --soil-2:#171D16;
+  --line:rgba(228,235,224,.085);
+  --line-2:rgba(228,235,224,.17);
+  --ink:#E9EEE7;
+  --ink-2:#B6C1B1;
+  --ink-3:#8B9786;
+  --leaf:#7DAA6D;
+  --leaf-2:#A9CE8C;
+  --moss:#5E8C61;
+  --sand:#CDB48C;
+  --clay:#B98055;
+  --bark-deep:#2F241D;
+
+  --f-display:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --f-sans:"Jost","Helvetica Neue",Arial,sans-serif;
+
+  --s1:.5rem; --s2:1rem; --s3:1.5rem; --s4:2rem; --s5:3rem; --s6:4.5rem;
+  --wrap:1140px;
+  --r:2px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  margin:0;
+  background:
+    radial-gradient(120% 62% at 50% -8%, rgba(94,140,97,.16) 0%, rgba(94,140,97,.05) 38%, rgba(8,11,8,0) 70%),
+    radial-gradient(90% 50% at 50% 108%, rgba(110,79,55,.13) 0%, rgba(8,11,8,0) 65%),
+    var(--ground);
+  color:var(--ink-2);
+  font-family:var(--f-sans);
+  font-size:17px;
+  font-weight:400;
+  line-height:1.75;
+  letter-spacing:.004em;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block;height:auto}
+a{color:inherit}
+h1,h2,h3,h4,p,ul,ol,figure,blockquote{margin:0}
+ul{padding:0;list-style:none}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--leaf-2);outline-offset:3px;border-radius:2px}
+
+.wrap{width:min(100% - 2.4rem,var(--wrap));margin-inline:auto}
+.narrow{width:min(100% - 2.4rem,720px);margin-inline:auto}
+section{position:relative}
+.pad{padding-block:clamp(4.5rem,9vw,8rem)}
+
+.eyebrow{
+  font-size:.7rem;font-weight:500;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--leaf);display:flex;align-items:center;gap:.7rem;line-height:1;
+}
+.eyebrow::before{content:"";width:22px;height:1px;background:var(--leaf);opacity:.65;flex:none}
+.eyebrow.center{justify-content:center}
+h1,h2,.display{font-family:var(--f-display);font-weight:500;color:var(--ink);text-wrap:balance;letter-spacing:-.01em}
+h1{font-size:clamp(2.7rem,6.4vw,5rem);line-height:.99}
+h2{font-size:clamp(2.05rem,4.2vw,3.35rem);line-height:1.06}
+h3{font-family:var(--f-sans);font-size:1.06rem;font-weight:500;color:var(--ink);letter-spacing:.005em;line-height:1.45}
+.lead{font-size:clamp(1.04rem,1.5vw,1.2rem);line-height:1.68;color:var(--ink-2)}
+.muted{color:var(--ink-3)}
+.small{font-size:.83rem;line-height:1.6}
+em{color:var(--sand);font-style:italic}
+strong{color:var(--ink);font-weight:500}
+
+/* ---------- nav ---------- */
+.nav{position:sticky;top:0;z-index:60;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  background:rgba(8,11,8,.72);border-bottom:1px solid transparent;transition:border-color .4s,background .4s}
+.nav.is-stuck{border-bottom-color:var(--line);background:rgba(8,11,8,.9)}
+.nav-in{display:flex;align-items:center;gap:var(--s3);height:70px}
+.brand{display:flex;align-items:center;gap:.7rem;text-decoration:none;flex:none}
+.brand-name{font-family:var(--f-sans);font-size:.74rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);line-height:1.25}
+.brand-name span{display:block;font-size:.58rem;letter-spacing:.16em;color:var(--ink-3);font-weight:400}
+.nav-links{display:flex;gap:1.6rem;margin-left:auto;align-items:center}
+.nav-links a{font-size:.82rem;text-decoration:none;color:var(--ink-3);transition:color .25s}
+.nav-links a:hover{color:var(--ink)}
+@media (max-width:900px){.nav-links{display:none}}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
+  font-size:.86rem;font-weight:500;letter-spacing:.04em;text-decoration:none;cursor:pointer;
+  padding:.92rem 1.6rem;border-radius:var(--r);border:1px solid transparent;transition:all .3s var(--ease)}
+.btn-primary{background:var(--leaf-2);color:#0A130A;border-color:var(--leaf-2)}
+.btn-primary:hover{background:#C0DEA5;border-color:#C0DEA5;transform:translateY(-1px);box-shadow:0 10px 30px -12px rgba(169,206,140,.55)}
+.btn-ghost{border-color:var(--line-2);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--leaf);color:var(--leaf-2);background:rgba(125,170,109,.07)}
+.btn-sm{padding:.62rem 1.1rem;font-size:.78rem}
+.btn svg{flex:none}
+
+/* ---------- hero ---------- */
+.hero{padding-top:clamp(3.5rem,7vw,6rem);overflow:hidden}
+.hero-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.75}
+.hero-in{position:relative;z-index:2;text-align:center;display:flex;flex-direction:column;align-items:center;gap:var(--s3)}
+.hero h1{max-width:16ch}
+.hero .lead{max-width:56ch;margin-inline:auto}
+.hero-q{font-family:var(--f-display);font-style:italic;font-size:clamp(1.05rem,2vw,1.35rem);color:var(--ink-3)}
+.cta-row{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center;margin-top:.4rem}
+.cta-note{font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.cta-note b{color:var(--leaf);font-weight:500}
+
+.hero-art{position:relative;z-index:1;margin-top:clamp(-1rem,-1vw,0rem)}
+.hero-art img{width:min(100%,1180px);margin-inline:auto;
+  filter:drop-shadow(0 0 90px rgba(125,170,109,.14))}
+.hero-glow{position:absolute;left:50%;top:2%;width:min(70vw,620px);aspect-ratio:1;transform:translate(-50%,-30%);
+  background:radial-gradient(circle,rgba(169,206,140,.30) 0%,rgba(125,170,109,.10) 34%,rgba(8,11,8,0) 66%);
+  pointer-events:none;z-index:0}
+.hero-fade{position:absolute;left:0;right:0;bottom:-1px;height:34%;
+  background:linear-gradient(180deg,rgba(8,11,8,0),var(--ground) 88%);pointer-events:none;z-index:3}
+
+/* ---------- soil line ---------- */
+.soilline{position:relative;height:1px;background:linear-gradient(90deg,transparent,var(--line-2) 18%,var(--line-2) 82%,transparent)}
+.soilline::after{content:"";position:absolute;left:50%;top:50%;width:5px;height:5px;border-radius:50%;
+  transform:translate(-50%,-50%);background:var(--leaf);box-shadow:0 0 12px 2px rgba(125,170,109,.5)}
+
+/* ---------- generic grid blocks ---------- */
+.split{display:grid;grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);gap:clamp(2rem,5vw,4.5rem)}
+@media (max-width:860px){.split{grid-template-columns:1fr;gap:2rem}}
+.stack{display:flex;flex-direction:column;gap:var(--s3)}
+.stack-sm{display:flex;flex-direction:column;gap:var(--s2)}
+.rail{position:sticky;top:100px;align-self:start;display:flex;flex-direction:column;gap:1rem}
+@media (max-width:860px){.rail{position:static}}
+
+/* ---------- invisible work list ---------- */
+.invisible{display:grid;gap:0;border-top:1px solid var(--line)}
+.invisible li{display:grid;grid-template-columns:2.2rem 1fr;gap:1rem;padding:1.15rem 0;border-bottom:1px solid var(--line);align-items:start}
+.invisible .n{font-size:.7rem;letter-spacing:.12em;color:var(--leaf);padding-top:.42rem;font-variant-numeric:tabular-nums}
+.invisible p{color:var(--ink-3);font-size:.95rem;line-height:1.6;margin-top:.2rem}
+
+/* ---------- antes / despues ---------- */
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:3px;overflow:hidden}
+@media (max-width:820px){.compare{grid-template-columns:1fr}}
+.pane{background:var(--soil);padding:clamp(1.6rem,3vw,2.4rem);display:flex;flex-direction:column;gap:1.4rem}
+.pane.after{background:linear-gradient(180deg,rgba(94,140,97,.09),rgba(17,22,16,1) 55%)}
+.pane-head{display:flex;flex-direction:column;gap:.55rem}
+.pane-tag{font-size:.68rem;letter-spacing:.26em;text-transform:uppercase;color:var(--clay);display:flex;align-items:center;gap:.6rem}
+.pane.after .pane-tag{color:var(--leaf-2)}
+.pane-tag::before{content:"";width:8px;height:8px;border-radius:50%;border:1px solid currentColor;flex:none}
+.pane.after .pane-tag::before{background:currentColor;box-shadow:0 0 10px 1px rgba(169,206,140,.55)}
+.pane h3{font-family:var(--f-display);font-size:1.55rem;font-weight:500;color:var(--ink);line-height:1.15}
+.plist{display:flex;flex-direction:column}
+.plist li{display:flex;gap:.85rem;align-items:baseline;padding:.62rem 0;border-bottom:1px solid rgba(228,235,224,.05);
+  font-size:.95rem;color:var(--ink-2);transition:color .25s,background .25s;cursor:default}
+.plist li:last-child{border-bottom:0}
+.plist li::before{content:"";width:14px;height:1px;background:var(--clay);opacity:.6;flex:none;transform:translateY(-4px)}
+.pane.after .plist li::before{background:var(--leaf);opacity:.85}
+.plist li.is-linked{color:var(--ink);background:rgba(228,235,224,.035)}
+.pane-metric{margin-top:auto;padding-top:1.2rem;border-top:1px solid var(--line);display:flex;align-items:baseline;gap:.7rem}
+.pane-metric b{font-family:var(--f-display);font-size:3.1rem;font-weight:500;line-height:1;color:var(--clay);font-variant-numeric:lining-nums tabular-nums}
+.pane.after .pane-metric b{color:var(--leaf-2)}
+.pane-metric span{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);max-width:14ch;line-height:1.35}
+.delta{display:flex;justify-content:center;margin-top:-1.4rem;position:relative;z-index:2}
+.delta span{background:var(--ground);border:1px solid var(--line-2);border-radius:99px;padding:.5rem 1.3rem;
+  font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink)}
+.delta b{color:var(--leaf-2);font-weight:500}
+
+/* ---------- layers (filosofia) ---------- */
+.layers{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.layer{display:grid;grid-template-columns:5.2rem 1fr;gap:1.4rem;padding:1.5rem 0;border-bottom:1px solid var(--line);align-items:start}
+@media (max-width:640px){.layer{grid-template-columns:3.4rem 1fr;gap:1rem}}
+.medal{width:46px;height:46px;border-radius:50%;border:1px solid var(--line-2);display:grid;place-items:center;
+  color:var(--leaf);transition:border-color .35s,color .35s,box-shadow .35s}
+@media (max-width:640px){.medal{width:38px;height:38px}}
+.layer:hover .medal{border-color:var(--leaf);box-shadow:0 0 22px -6px rgba(125,170,109,.65)}
+.layer-txt{display:flex;flex-direction:column;gap:.35rem}
+.layer-txt h3{font-size:.76rem;letter-spacing:.24em;text-transform:uppercase;color:var(--ink);font-weight:500}
+.layer-txt p{font-size:.97rem;color:var(--ink-2)}
+.layer-txt .sub{color:var(--ink-3);font-size:.88rem}
+.above .medal{color:var(--sand)}
+.above:hover .medal{border-color:var(--sand);box-shadow:0 0 22px -6px rgba(205,180,140,.5)}
+
+/* ---------- dashboard ---------- */
+.dash{border:1px solid var(--line);border-radius:3px;background:linear-gradient(180deg,var(--soil),rgba(12,16,12,.6));overflow:hidden}
+.dash-head{display:flex;flex-wrap:wrap;gap:.8rem;align-items:center;justify-content:space-between;
+  padding:1rem 1.4rem;border-bottom:1px solid var(--line);background:rgba(228,235,224,.02)}
+.dash-head .t{font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-3)}
+.dash-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line)}
+@media (max-width:880px){.dash-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:480px){.dash-grid{grid-template-columns:1fr}}
+.kpi{background:var(--soil);padding:1.7rem 1.4rem;display:flex;flex-direction:column;gap:.55rem;min-height:210px}
+.kpi .v{font-family:var(--f-display);font-size:clamp(2.8rem,5vw,3.6rem);font-weight:500;line-height:1;
+  color:var(--leaf-2);font-variant-numeric:lining-nums tabular-nums;letter-spacing:-.02em}
+.kpi .k{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);line-height:1.5}
+.kpi .d{font-size:.86rem;color:var(--ink-3);line-height:1.6}
+.spark{height:26px;width:100%;margin-top:auto;opacity:.8}
+.dash-foot{padding:.95rem 1.4rem;border-top:1px solid var(--line);font-size:.78rem;color:var(--ink-3);background:rgba(228,235,224,.015)}
+
+/* ---------- cards ---------- */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:3px;overflow:hidden}
+@media (max-width:900px){.cards{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:600px){.cards{grid-template-columns:1fr}}
+.card{background:var(--soil);padding:clamp(1.5rem,2.6vw,2rem);display:flex;flex-direction:column;gap:.85rem;
+  transition:background .35s;position:relative}
+.card:hover{background:var(--soil-2)}
+.card .ico{color:var(--leaf);margin-bottom:.3rem}
+.card p{font-size:.94rem;color:var(--ink-2)}
+.card .benefit{margin-top:auto;padding-top:.9rem;border-top:1px solid var(--line);font-size:.85rem;color:var(--ink-3)}
+.card .benefit b{color:var(--leaf-2);font-weight:400;letter-spacing:.02em}
+
+/* ---------- proceso ---------- */
+.steps{display:flex;flex-direction:column;position:relative}
+.step{display:grid;grid-template-columns:4.6rem 1fr;gap:1.6rem;padding:1.6rem 0;position:relative}
+@media (max-width:640px){.step{grid-template-columns:3rem 1fr;gap:1rem}}
+.step-num{position:relative;display:flex;justify-content:center}
+.step-num i{position:relative;z-index:2;width:42px;height:42px;border-radius:50%;background:var(--ground);
+  border:1px solid var(--line-2);display:grid;place-items:center;font-style:normal;font-size:.74rem;
+  letter-spacing:.06em;color:var(--leaf);font-variant-numeric:tabular-nums;transition:border-color .35s,box-shadow .35s}
+@media (max-width:640px){.step-num i{width:34px;height:34px;font-size:.68rem}}
+.step:hover .step-num i{border-color:var(--leaf);box-shadow:0 0 20px -5px rgba(125,170,109,.7)}
+.step-num::before{content:"";position:absolute;top:0;bottom:-1.6rem;left:50%;width:1px;background:var(--line);transform:translateX(-50%)}
+.step:last-child .step-num::before{display:none}
+.step-body{display:flex;flex-direction:column;gap:.45rem;padding-top:.35rem}
+.step-body h3{font-family:var(--f-display);font-size:1.5rem;font-weight:500;line-height:1.15}
+.step-body p{font-size:.96rem;color:var(--ink-2)}
+.step-body .val{font-size:.86rem;color:var(--leaf);letter-spacing:.02em}
+
+/* ---------- faq ---------- */
+.faq{border-top:1px solid var(--line)}
+.q{border-bottom:1px solid var(--line)}
+.q button{width:100%;background:none;border:0;text-align:left;padding:1.25rem 2.6rem 1.25rem 0;cursor:pointer;
+  position:relative;font-size:1rem;font-weight:400;color:var(--ink);letter-spacing:.005em;line-height:1.45;transition:color .25s}
+.q button:hover{color:var(--leaf-2)}
+.q button::after{content:"";position:absolute;right:.5rem;top:1.75rem;width:11px;height:11px;
+  border-right:1px solid currentColor;border-bottom:1px solid currentColor;transform:rotate(45deg) translateY(-3px);
+  transition:transform .35s var(--ease);opacity:.6}
+.q[open] button::after,.q.is-open button::after{transform:rotate(225deg) translateY(-3px)}
+.q .a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s var(--ease)}
+.q.is-open .a{grid-template-rows:1fr}
+.q .a>div{overflow:hidden}
+.q .a p{padding-bottom:1.35rem;padding-right:2.6rem;color:var(--ink-3);font-size:.95rem;max-width:70ch}
+@media (max-width:640px){.q .a p{padding-right:0}}
+
+/* ---------- placeholder prueba social ---------- */
+.slots{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+@media (max-width:800px){.slots{grid-template-columns:1fr}}
+.slot{border:1px dashed rgba(228,235,224,.16);border-radius:3px;padding:1.4rem;display:flex;flex-direction:column;gap:.6rem;min-height:170px}
+.slot .tag{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--clay)}
+.slot p{font-size:.9rem;color:var(--ink-3)}
+
+/* ---------- form / cta final ---------- */
+.final{background:
+  radial-gradient(80% 90% at 50% 110%, rgba(94,140,97,.18) 0%, rgba(8,11,8,0) 62%),
+  linear-gradient(180deg,rgba(12,16,12,0),rgba(17,22,16,.7));border-top:1px solid var(--line)}
+.formcard{border:1px solid var(--line);background:rgba(17,22,16,.75);border-radius:3px;padding:clamp(1.5rem,3vw,2.2rem);
+  display:flex;flex-direction:column;gap:1rem}
+.field{display:flex;flex-direction:column;gap:.4rem}
+.field label{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3)}
+.field input,.field select,.field textarea{
+  background:rgba(8,11,8,.7);border:1px solid var(--line-2);border-radius:2px;padding:.75rem .85rem;
+  color:var(--ink);font-family:var(--f-sans);font-size:.95rem;transition:border-color .25s}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--leaf);outline:none}
+.field textarea{resize:vertical;min-height:88px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media (max-width:600px){.form-row{grid-template-columns:1fr}}
+.form-note{font-size:.78rem;color:var(--ink-3)}
+.form-msg{display:none;border:1px solid var(--leaf);background:rgba(125,170,109,.09);padding:.85rem 1rem;
+  font-size:.88rem;color:var(--leaf-2);border-radius:2px}
+.form-msg.is-on{display:block}
+.guarantee{display:flex;flex-direction:column;gap:.9rem}
+.guarantee li{display:flex;gap:.75rem;font-size:.93rem;color:var(--ink-2);align-items:flex-start}
+.guarantee svg{flex:none;color:var(--leaf);margin-top:.28rem}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--line);padding-block:2.6rem;font-size:.85rem;color:var(--ink-3)}
+.foot-in{display:flex;flex-wrap:wrap;gap:1.4rem;justify-content:space-between;align-items:flex-start}
+.foot-in a{color:var(--ink-3);text-decoration:none}
+.foot-in a:hover{color:var(--leaf-2)}
+.todo{border:1px dashed rgba(185,128,85,.4);border-radius:3px;padding:.9rem 1rem;font-size:.8rem;color:var(--ink-3);max-width:52ch}
+.todo b{color:var(--clay);font-weight:500;letter-spacing:.14em;text-transform:uppercase;font-size:.68rem;display:block;margin-bottom:.35rem}
+
+/* ---------- reveal ---------- */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .rv{opacity:1;transform:none;transition:none}
+  .btn:hover{transform:none}
+  .q .a{transition:none}
+}
+@media (max-width:640px){.eyebrow.center{display:block;text-align:center}.eyebrow.center::before{display:none}}
+.skip{position:absolute;left:-9999px;top:0;background:var(--leaf-2);color:#0A130A;padding:.7rem 1rem;z-index:100}
+.skip:focus{left:1rem;top:1rem}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top" aria-label="Todas las Intenciones — inicio">
+      <span class="medal" style="width:38px;height:38px" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M12 21.5V11.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M12.2 12.3c-.2-3.4 2-6 5.7-6.7.4 4.2-1.9 6.9-5.7 6.7Z" fill="currentColor" opacity=".92"/>
+          <path d="M11.7 14.6c-.2-2.7-2-4.6-4.9-5-.2 3.3 1.7 5.4 4.9 5Z" fill="currentColor" opacity=".5"/>
+        </svg>
+      </span>
+      <span class="brand-name">Todas las Intenciones<span>Donde las ideas surgen de la acción</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Secciones">
+      <a href="#problema">El problema</a>
+      <a href="#comparativa">Antes / Después</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#proceso">Cómo trabajamos</a>
+      <a href="#faq">Preguntas</a>
+      <a class="btn btn-ghost btn-sm" href="#diagnostico">Agendar diagnóstico</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenido" tabindex="-1">
+<span id="top"></span>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <canvas class="hero-canvas" id="nodes" aria-hidden="true"></canvas>
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="wrap hero-in">
+    <p class="eyebrow center rv">Automatización e inteligencia artificial para empresas</p>
+    <h1 class="rv">Tu equipo sostiene el sistema.<br>Debería ser al revés.</h1>
+    <p class="lead rv">Conectamos tus procesos, tus datos y tus herramientas para que el trabajo repetitivo deje de depender de que alguien se acuerde. Tu gente vuelve a decidir; el sistema se encarga de sostener.</p>
+    <div class="cta-row rv">
+      <a class="btn btn-primary" href="#diagnostico">Agendar diagnóstico
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h11M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="btn btn-ghost" href="#comparativa">Ver el antes y el después</a>
+    </div>
+    <p class="cta-note rv">45 minutos · <b>Sin coste</b> · Sales con un mapa de tus procesos</p>
+  </div>
+  <div class="hero-art rv">
+    <img src="assets/hero.webp" width="1800" height="956" alt="Un brote verde sobre la tierra; bajo la superficie, las raíces forman el nombre Todas las Intenciones." fetchpriority="high">
+    <div class="hero-fade" aria-hidden="true"></div>
+  </div>
+</section>
+
+<!-- ============ PROBLEMA ============ -->
+<section class="pad" id="problema">
+  <div class="wrap split">
+    <div class="rail">
+      <p class="eyebrow rv">El trabajo invisible</p>
+      <h2 class="rv">Lo que sostiene una empresa nunca está a la vista.</h2>
+    </div>
+    <div class="stack">
+      <p class="lead rv">Ninguna empresa se frena por su producto. Se frena por lo que ocurre entre una cosa y otra: el pedido que alguien copia a mano, el dato que hay que buscar en tres sitios, el reporte que se arma el viernes por la tarde.</p>
+      <p class="rv">Ese trabajo no aparece en ningún organigrama. No se factura, no se mide y casi nunca se cuestiona. Pero determina cuántos clientes puedes atender antes de que algo se rompa, y es la razón por la que dos empresas del mismo tamaño, con el mismo presupuesto, crecen a velocidades distintas.</p>
+      <ul class="invisible rv">
+        <li><span class="n">01</span><div><h3>El proceso vive en la cabeza de alguien</h3><p>Cuando esa persona se va de vacaciones, la operación baja de ritmo. No es falta de compromiso: es falta de sistema.</p></div></li>
+        <li><span class="n">02</span><div><h3>El mismo dato se escribe cuatro veces</h3><p>Del WhatsApp a la hoja de cálculo, de la hoja al sistema de facturación, del sistema al informe. Cada copia es una oportunidad de error.</p></div></li>
+        <li><span class="n">03</span><div><h3>Nadie sabe el estado real hasta que pregunta</h3><p>La información existe, pero está repartida. Decidir requiere primero reconstruir lo que ya pasó.</p></div></li>
+        <li><span class="n">04</span><div><h3>Crecer significa contratar más de lo mismo</h3><p>Si el 20 % más de ventas exige el 20 % más de personas administrativas, no estás escalando: estás replicando el problema.</p></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="soilline"></div></div>
+
+<!-- ============ ANTES / DESPUÉS ============ -->
+<section class="pad" id="comparativa">
+  <div class="wrap stack">
+    <div class="stack-sm rv" style="max-width:62ch">
+      <p class="eyebrow">La misma empresa, seis semanas después</p>
+      <h2>La diferencia no se ve en la web. Se ve en el lunes.</h2>
+      <p class="lead">Un mismo equipo, el mismo número de pedidos, el mismo presupuesto. Lo único que cambió fue quién hace el trabajo mecánico.</p>
+    </div>
+
+    <div class="compare rv">
+      <div class="pane">
+        <div class="pane-head">
+          <p class="pane-tag">Antes</p>
+          <h3>Un equipo sostiene el sistema.</h3>
+        </div>
+        <ul class="plist">
+          <li data-pair="1">El pedido entra por WhatsApp</li>
+          <li data-pair="2">Alguien lo copia a Excel</li>
+          <li data-pair="3">Nadie sabe en qué punto está cada cliente</li>
+          <li data-pair="4">Los reportes se arman a mano</li>
+          <li data-pair="5">Cinco herramientas que no se hablan</li>
+          <li data-pair="6">Los procesos viven en la cabeza de las personas</li>
+        </ul>
+        <div class="pane-metric"><b>23 h</b><span>manuales por semana</span></div>
+      </div>
+      <div class="pane after">
+        <div class="pane-head">
+          <p class="pane-tag">Después</p>
+          <h3>El sistema trabaja.</h3>
+        </div>
+        <ul class="plist">
+          <li data-pair="1">El pedido entra y avanza solo</li>
+          <li data-pair="2">El CRM se actualiza sin que nadie lo toque</li>
+          <li data-pair="3">El estado de cada cliente está a la vista</li>
+          <li data-pair="4">Los reportes llegan solos, con el dato del día</li>
+          <li data-pair="5">Una sola fuente de datos</li>
+          <li data-pair="6">Los procesos están documentados y son de la empresa</li>
+        </ul>
+        <div class="pane-metric"><b>4 h</b><span>manuales por semana</span></div>
+      </div>
+    </div>
+    <div class="delta rv"><span><b>19 horas</b> devueltas cada semana</span></div>
+    <p class="small muted rv" style="text-align:center;max-width:70ch;margin-inline:auto">Ejemplo ilustrativo de un área administrativa pequeña, no un caso medido. Las horas reales dependen del volumen, del número de sistemas implicados y de cuántas excepciones tenga el proceso.</p>
+  </div>
+</section>
+
+<!-- ============ TRANSFORMACIÓN ============ -->
+<section class="pad">
+  <div class="narrow stack">
+    <p class="eyebrow rv">La transformación</p>
+    <h2 class="rv">Lo primero que cambia no es el software.</h2>
+    <p class="lead rv">Es la sensación de llegar el lunes y que el trabajo del fin de semana ya esté hecho. Nadie tuvo que quedarse. Nadie tuvo que acordarse.</p>
+    <p class="rv">Al principio el cambio es pequeño y casi decepcionante: un correo que ya no hay que escribir, una hoja de cálculo que se llena sola. Después ocurre algo menos obvio. Las reuniones dejan de empezar con «¿alguien sabe cómo vamos?», porque el dato ya está ahí. Las decisiones se toman con lo que pasó ayer, no con lo que alguien recuerda del mes pasado.</p>
+    <p class="rv">Y más adelante llega la parte que de verdad importa: aceptar más trabajo sin que la pregunta sea «¿quién lo va a procesar?». Ese es el momento en que una empresa deja de administrarse y empieza a crecer.</p>
+    <figure class="rv" style="border-left:1px solid var(--line-2);padding-left:1.6rem;margin-top:1rem">
+      <blockquote class="display" style="font-size:clamp(1.5rem,3vw,2.1rem);line-height:1.28;font-style:italic">No vendemos tecnología. Vendemos el tiempo que tu equipo estaba usando para copiar información de un sitio a otro.</blockquote>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ FILOSOFÍA ============ -->
+<section class="pad" id="filosofia" style="background:linear-gradient(180deg,rgba(8,11,8,0),rgba(17,22,16,.55),rgba(8,11,8,0))">
+  <div class="wrap split">
+    <div class="rail">
+      <p class="eyebrow rv">Nuestra filosofía</p>
+      <h2 class="rv">Un árbol no crece por sus hojas.</h2>
+      <p class="rv">Todo lo que una empresa muestra —la web, la marca, el producto— es la parte visible. Lo que decide hasta dónde puede crecer está debajo: los procesos, los datos, las integraciones y las conexiones entre ellos.</p>
+      <p class="display rv" style="font-size:1.35rem;font-style:italic;color:var(--sand);line-height:1.4">Nosotros construimos las raíces para que tu empresa pueda crecer sin límites.</p>
+    </div>
+    <div class="stack-sm">
+      <ul class="layers rv">
+        <li class="layer above">
+          <span class="medal"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 21V11.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M12.2 12.4c-.2-3.4 2-6.1 5.8-6.8.4 4.3-2 7-5.8 6.8Z" fill="currentColor" opacity=".9"/><path d="M11.7 14.7c-.2-2.7-2-4.6-4.9-5-.2 3.3 1.7 5.4 4.9 5Z" fill="currentColor" opacity=".5"/></svg></span>
+          <div class="layer-txt"><h3>Brote</h3><p>El crecimiento y las oportunidades nuevas.</p><p class="sub">Es lo que todos celebran, y lo último que aparece.</p></div>
+        </li>
+        <li class="layer above">
+          <span class="medal"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"><path d="M12 21V8"/><path d="M12 13 7 8M12 11l4.5-4.5M12 16l-3.5-3.5"/></svg></span>
+          <div class="layer-txt"><h3>Ramas</h3><p>Tu marca, tu web, tu producto: lo que el mercado ve.</p><p class="sub">Aquí es donde casi todo el mundo invierte primero.</p></div>
+        </li>
+        <li class="layer above">
+          <span class="medal"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"><path d="M10 21V5c0-1.2.7-2 2-2s2 .8 2 2v16"/><path d="M10 12c-1.5-1-1.5-3 0-4M14 15c1.5-1 1.5-3 0-4"/></svg></span>
+          <div class="layer-txt"><h3>Tronco</h3><p>El equipo y las decisiones que sostienen el peso.</p><p class="sub">Cuando abajo no hay estructura, el tronco se cansa.</p></div>
+        </li>
+      </ul>
+      <div class="soilline rv" style="margin:.4rem 0"></div>
+      <p class="small muted rv" style="text-align:center;letter-spacing:.2em;text-transform:uppercase;font-size:.66rem">Superficie · aquí termina lo visible</p>
+      <ul class="layers rv">
+        <li class="layer">
+          <span class="medal"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"><path d="M12 3v8"/><path d="M12 11c-2 1.5-3 3.5-3.5 6.5M12 11c2 1.5 3 3.5 3.5 6.5M12 11v9"/><path d="M8.5 17.5c-.8.8-1.2 2-1.3 3.2M15.5 17.5c.8.8 1.2 2 1.3 3.2"/></svg></span>
+          <div class="layer-txt"><h3>Raíces</h3><p>Los procesos que sostienen la operación todos los días.</p><p class="sub">Invisibles, poco glamurosos y decisivos. Aquí trabajamos.</p></div>
+        </li>
+        <li class="layer">
+          <span class="medal"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="6" cy="8" r="1.6"/><circle cx="17" cy="6.5" r="1.6"/><circle cx="12" cy="15" r="1.6"/><circle cx="19" cy="17" r="1.6"/><path d="M7.4 8.8 10.7 14M13.4 14.3 15.9 8M13.5 15.6 17.4 16.6" stroke-linecap="round"/></svg></span>
+          <div class="layer-txt"><h3>Nodos</h3><p>Los puntos donde la información se convierte en acción.</p><p class="sub">Un pedido que dispara una factura, un dato que actualiza un estado.</p></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESULTADOS ============ -->
+<section class="pad" id="resultados">
+  <div class="wrap stack">
+    <div class="stack-sm rv" style="max-width:60ch">
+      <p class="eyebrow">Qué se puede esperar</p>
+      <h2>Los números que suele mover una automatización bien hecha.</h2>
+    </div>
+    <div class="dash rv">
+      <div class="dash-head">
+        <span class="t">Indicadores de referencia</span>
+        <span class="t">Rangos orientativos · no son promesas</span>
+      </div>
+      <div class="dash-grid">
+        <div class="kpi">
+          <span class="v" data-count="62" data-suffix="%">0%</span>
+          <span class="k">Menos tiempo en tareas repetitivas</span>
+          <span class="d">Las horas que hoy se van en copiar, revisar y reenviar vuelven al trabajo que sí requiere criterio.</span>
+        </div>
+        <div class="kpi">
+          <span class="v" data-count="5" data-suffix="×">0×</span>
+          <span class="k">Más rápido el cierre de mes</span>
+          <span class="d">Cuando los datos ya están consolidados, cerrar deja de ser un proyecto y pasa a ser una revisión.</span>
+        </div>
+        <div class="kpi">
+          <span class="v" data-count="0" data-suffix="">0</span>
+          <span class="k">Errores de transcripción</span>
+          <span class="d">Un dato que no se vuelve a escribir a mano no se puede escribir mal. El error deja de ser humano y pasa a ser detectable.</span>
+        </div>
+        <div class="kpi">
+          <span class="v" style="font-size:clamp(2.1rem,3.6vw,2.7rem)">4&nbsp;–&nbsp;8</span>
+          <span class="k">Semanas hasta el primer flujo en marcha</span>
+          <span class="d">No un piloto de demostración: un proceso real funcionando en producción, con tu equipo usándolo.</span>
+        </div>
+      </div>
+      <div class="dash-foot">Cifras orientativas para procesos administrativos con volumen estable. El resultado real depende del punto de partida, de la calidad de tus datos y de cuántas excepciones tenga el proceso. En el diagnóstico calculamos el rango concreto de tu caso antes de que decidas nada.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICIOS ============ -->
+<section class="pad" id="servicios">
+  <div class="wrap stack">
+    <div class="stack-sm rv" style="max-width:60ch">
+      <p class="eyebrow">Servicios</p>
+      <h2>Cinco frentes, un mismo objetivo: que el sistema aguante solo.</h2>
+    </div>
+    <div class="cards rv">
+      <article class="card">
+        <span class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.6-5.9"/><path d="M20 4v4h-4"/></svg></span>
+        <h3>Automatización de procesos</h3>
+        <p>Mapeamos el proceso real —no el que está en el manual— y lo convertimos en un flujo que se ejecuta solo, con reglas claras para las excepciones.</p>
+        <p class="benefit"><b>Beneficio:</b> menos tareas manuales, menos errores y menos dependencia de una persona concreta.</p>
+      </article>
+      <article class="card">
+        <span class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/><circle cx="12" cy="12" r="3.4"/></svg></span>
+        <h3>Inteligencia artificial aplicada</h3>
+        <p>Clasificar correos, extraer datos de facturas, resumir conversaciones, redactar respuestas. IA donde ahorra horas de verdad, no donde queda bien decirlo.</p>
+        <p class="benefit"><b>Beneficio:</b> el criterio sigue siendo tuyo; el trabajo mecánico deja de serlo.</p>
+      </article>
+      <article class="card">
+        <span class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"><circle cx="6" cy="6" r="2.2"/><circle cx="18" cy="6" r="2.2"/><circle cx="12" cy="18" r="2.2"/><path d="M8.2 6h7.6M6.9 8 11 15.9M17.1 8 13 15.9"/></svg></span>
+        <h3>Integración de sistemas</h3>
+        <p>Conectamos lo que ya tienes: CRM, facturación, hojas de cálculo, correo, WhatsApp, tienda. Sin obligarte a cambiar de herramientas por gusto.</p>
+        <p class="benefit"><b>Beneficio:</b> un solo dato, una sola versión de la verdad.</p>
+      </article>
+      <article class="card">
+        <span class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"><path d="M3 6h18M6 12h12M10 18h4"/></svg></span>
+        <h3>Optimización operativa</h3>
+        <p>Antes de automatizar, quitamos. Muchos pasos existen porque alguien los inventó hace años para resolver algo que ya no ocurre.</p>
+        <p class="benefit"><b>Beneficio:</b> automatizar un proceso malo solo consigue hacerlo mal más rápido.</p>
+      </article>
+      <article class="card">
+        <span class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17.5 9.5 12l3.5 3.5L20 8"/><path d="M15.5 8H20v4.5"/></svg></span>
+        <h3>Transformación digital</h3>
+        <p>Acompañamiento completo: documentación, formación del equipo y un plan por fases para que el cambio no dependa de una consultora externa.</p>
+        <p class="benefit"><b>Beneficio:</b> el sistema queda en tu casa, no en la nuestra.</p>
+      </article>
+      <article class="card" style="background:linear-gradient(180deg,rgba(94,140,97,.12),var(--soil) 70%);justify-content:center;gap:1.1rem">
+        <h3 style="font-family:var(--f-display);font-size:1.5rem;font-weight:500">¿No sabes cuál necesitas?</h3>
+        <p>Casi nadie lo sabe al principio. Por eso empezamos siempre por mirar cómo trabaja hoy tu equipo.</p>
+        <a class="btn btn-ghost btn-sm" href="#diagnostico" style="align-self:flex-start">Empezar por el diagnóstico</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESO ============ -->
+<section class="pad" id="proceso">
+  <div class="wrap split">
+    <div class="rail">
+      <p class="eyebrow rv">Cómo trabajamos</p>
+      <h2 class="rv">Cinco pasos. Ninguno se salta.</h2>
+      <p class="rv">Cada fase termina con algo que puedes leer, revisar y aprobar. Si en el diagnóstico resulta que automatizar no es lo que más te conviene, te lo decimos ahí.</p>
+    </div>
+    <ol class="steps rv">
+      <li class="step">
+        <span class="step-num"><i>01</i></span>
+        <div class="step-body"><h3>Diagnóstico</h3>
+          <p>Miramos cómo trabaja hoy tu equipo, no cómo debería. Salimos con un mapa de procesos y una lista priorizada por impacto y esfuerzo.</p>
+          <p class="val">Sabes qué automatizar primero y qué no vale la pena tocar.</p></div>
+      </li>
+      <li class="step">
+        <span class="step-num"><i>02</i></span>
+        <div class="step-body"><h3>Diseño</h3>
+          <p>Definimos el flujo objetivo, las reglas, las excepciones y quién decide cuando el sistema no sabe qué hacer. Todo por escrito, antes de construir.</p>
+          <p class="val">Nada se construye sin estar decidido antes.</p></div>
+      </li>
+      <li class="step">
+        <span class="step-num"><i>03</i></span>
+        <div class="step-body"><h3>Automatización</h3>
+          <p>Construimos el primer flujo completo de punta a punta, con registro de lo que pasa en cada paso y aviso cuando algo falla.</p>
+          <p class="val">Un proceso real funcionando, no una demostración bonita.</p></div>
+      </li>
+      <li class="step">
+        <span class="step-num"><i>04</i></span>
+        <div class="step-body"><h3>Implementación</h3>
+          <p>Puesta en marcha con tu equipo, en paralelo al proceso actual hasta que el nuevo demuestre que aguanta. Formación y documentación incluidas.</p>
+          <p class="val">Nadie se queda sin saber qué hacer el primer día.</p></div>
+      </li>
+      <li class="step">
+        <span class="step-num"><i>05</i></span>
+        <div class="step-body"><h3>Optimización continua</h3>
+          <p>Medimos, ajustamos y ampliamos. Cada mes el sistema hace un poco más de lo que antes hacía una persona a mano.</p>
+          <p class="val">El sistema mejora aunque nadie lo esté mirando.</p></div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ PRUEBA SOCIAL (pendiente de contenido real) ============ -->
+<section class="pad" id="casos">
+  <div class="wrap stack">
+    <div class="stack-sm rv" style="max-width:60ch">
+      <p class="eyebrow">Prueba social</p>
+      <h2>Aquí van tus casos reales.</h2>
+      <p class="lead">No inventamos testimonios ni resultados. Estos tres espacios están reservados para clientes reales; cada uno necesita el permiso por escrito de la empresa y una cifra que se pueda sostener.</p>
+    </div>
+    <div class="slots rv">
+      <div class="slot">
+        <span class="tag">Caso 01 · pendiente</span>
+        <p><strong>Qué recoger:</strong> sector y tamaño de la empresa, proceso automatizado, situación antes, situación después y una cifra verificable.</p>
+        <p class="small">Ideal: una frase textual del responsable de operaciones.</p>
+      </div>
+      <div class="slot">
+        <span class="tag">Caso 02 · pendiente</span>
+        <p><strong>Qué recoger:</strong> un caso con un sistema heredado difícil, para responder a la objeción «lo nuestro es muy particular».</p>
+        <p class="small">Ideal: nombre, cargo y foto con autorización.</p>
+      </div>
+      <div class="slot">
+        <span class="tag">Caso 03 · pendiente</span>
+        <p><strong>Qué recoger:</strong> un cliente de más de un año, que demuestre que el sistema se mantiene solo.</p>
+        <p class="small">Ideal: qué hacen hoy con las horas recuperadas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="pad" id="faq">
+  <div class="wrap split">
+    <div class="rail">
+      <p class="eyebrow rv">Preguntas frecuentes</p>
+      <h2 class="rv">Lo que casi todo el mundo pregunta antes de decidirse.</h2>
+      <p class="rv">Si tu duda no está aquí, escríbela en el formulario: la respondemos antes de la reunión.</p>
+    </div>
+    <div class="faq rv" id="faqlist">
+      <div class="q"><button type="button" aria-expanded="false">¿Cuánto cuesta un proyecto de automatización?</button><div class="a"><div><p>No damos una cifra antes del diagnóstico, porque sería inventarla. El precio depende de tres cosas: cuántos sistemas hay que conectar, cuántas excepciones tiene el proceso y quién lo va a mantener después. Lo que sí garantizamos es que recibirás un presupuesto cerrado por bloques —diagnóstico, diseño, construcción, puesta en marcha— antes de comprometerte a nada.</p></div></div></div>
+      <div class="q"><button type="button" aria-expanded="false">¿Cuánto tarda en verse el primer resultado?</button><div class="a"><div><p>Para un proceso acotado, lo habitual es tener el primer flujo funcionando en producción entre cuatro y ocho semanas. Es un rango orientativo: si tus datos están dispersos o el proceso tiene muchas excepciones, la fase de diseño se alarga. Preferimos decírtelo en el diagnóstico y no a mitad del proyecto.</p></div></div></div>
+      <div class="q"><button type="button" aria-expanded="false">¿Funciona con los sistemas que ya usamos?</button><div class="a"><div><p>En la mayoría de los casos, sí. Trabajamos sobre lo que ya tienes y solo proponemos cambiar una herramienta cuando el coste de mantenerla supera el de sustituirla. Si algún sistema no permite conexión directa, en el diagnóstico se dice claramente y se plantean las alternativas con su coste.</p></div></div></div>
+      <div class="q"><button type="button" aria-expanded="false">¿Qué pasa con la seguridad de nuestra información?</button><div class="a"><div><p>Tres reglas fijas: cada automatización accede solo a los datos que necesita, las credenciales se guardan en un gestor de secretos y nunca en el código, y todo queda registrado para saber quién hizo qué y cuándo. Las cuentas y accesos se crean a nombre de tu empresa. La configuración concreta y las obligaciones legales de protección de datos que apliquen en tu país deben revisarse con tu asesor: nosotros preparamos la parte técnica y te decimos qué falta.</p></div></div></div>
+      <div class="q"><button type="button" aria-expanded="false">¿Vamos a depender de ustedes para siempre?</button><div class="a"><div><p>No, y es una decisión de diseño. Cada flujo se entrega documentado: qué hace, con qué se conecta, qué pasa si falla y cómo modificarlo. Los accesos son tuyos desde el primer día. Si más adelante quieres llevarlo con tu equipo o con otro proveedor, puedes hacerlo sin rehacer nada.</p></div></div></div>
+      <div class="q"><button type="button" aria-expanded="false">¿Necesitamos personal técnico en el equipo?</button><div class="a"><div><p>Para usarlo, no. Los flujos se operan desde las herramientas que tu equipo ya conoce. Sí conviene que haya una persona responsable —normalmente de operaciones— que entienda el proceso y pueda decidir qué hacer con las excepciones. Esa persona recibe formación durante la implementación.</p></div></div></div>
+      <div class="q"><button type="button" aria-expanded="false">¿Esto va a reemplazar a mi equipo?</button><div class="a"><div><p>Lo que sustituye es la parte del trabajo que nadie quiere hacer: copiar, pegar, revisar y perseguir información. En las empresas con las que trabajamos el resultado habitual no es tener menos gente, sino que la misma gente atienda más volumen sin que la operación se rompa. Si tu objetivo es reducir plantilla, es una decisión legítima, pero conviene decirlo desde el principio porque cambia el diseño del proyecto.</p></div></div></div>
+      <div class="q"><button type="button" aria-expanded="false">¿Cómo se calcula el retorno de la inversión?</button><div class="a"><div><p>Con dos datos que sacamos en el diagnóstico: cuántas horas al mes consume hoy el proceso y cuánto cuesta esa hora en tu empresa. A eso se le suma el coste de los errores —facturas rehechas, pedidos perdidos, cobros que se retrasan— cuando se puede medir. El resultado es un rango, no una promesa: te enseñamos el cálculo para que puedas discutirlo.</p></div></div></div>
+      <div class="q"><button type="button" aria-expanded="false">¿Y si nuestros procesos no están documentados?</button><div class="a"><div><p>Es la situación normal, no la excepción. Casi nadie llega con los procesos escritos. Parte del diagnóstico consiste precisamente en levantarlos observando cómo trabaja el equipo. Ese mapa es tuyo aunque después decidas no seguir adelante.</p></div></div></div>
+      <div class="q"><button type="button" aria-expanded="false">¿Qué pasa cuando el proceso cambia?</button><div class="a"><div><p>Los flujos se construyen por bloques para que un cambio afecte a una pieza y no a todo. Los cambios de reglas —un precio, un responsable, un plazo— se ajustan en configuración, sin tocar el flujo. Los cambios estructurales se planifican como una mejora más dentro de la fase de optimización continua.</p></div></div></div>
+      <div class="q"><button type="button" aria-expanded="false">¿Sirve para una empresa pequeña?</button><div class="a"><div><p>Sí, y a veces es donde más se nota: cuando son cinco personas, cada hora perdida en tareas administrativas pesa mucho más. Lo que cambia es el alcance. En empresas pequeñas empezamos por un solo proceso, el que más duele, y se amplía cuando ya está pagándose solo.</p></div></div></div>
+      <div class="q"><button type="button" aria-expanded="false">¿Cómo empezamos?</button><div class="a"><div><p>Con una conversación de 45 minutos en la que nos cuentas cómo entra el trabajo hoy y dónde se atasca. De ahí sale el mapa de procesos y la lista priorizada. No hay coste y no compromete a nada: si al terminar decides no seguir, el mapa se queda contigo igualmente.</p></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA FINAL ============ -->
+<section class="pad final" id="diagnostico">
+  <div class="wrap split">
+    <div class="stack">
+      <p class="eyebrow rv">Empieza por aquí</p>
+      <h2 class="rv">Cada semana que el proceso sigue siendo manual cuesta horas que no vuelven.</h2>
+      <p class="lead rv">No hace falta que tengas claro qué automatizar. Solo hace falta que sepas qué parte de tu semana te gustaría no volver a repetir. De eso hablamos en 45 minutos.</p>
+      <ul class="guarantee rv">
+        <li><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5 6.3 12 13 4.5"/></svg><span>El diagnóstico no compromete a nada. Si decides no seguir, el mapa de procesos se queda contigo.</span></li>
+        <li><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5 6.3 12 13 4.5"/></svg><span>Presupuesto cerrado por bloques antes de empezar. Sin horas abiertas ni sorpresas a mitad de camino.</span></li>
+        <li><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5 6.3 12 13 4.5"/></svg><span>Accesos, cuentas y documentación a nombre de tu empresa desde el primer día.</span></li>
+        <li><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5 6.3 12 13 4.5"/></svg><span>Si el diagnóstico concluye que automatizar no es tu prioridad, te lo decimos y no facturamos nada.</span></li>
+      </ul>
+    </div>
+    <form class="formcard rv" id="form" novalidate>
+      <div class="form-row">
+        <div class="field"><label for="f-nombre">Nombre</label><input id="f-nombre" name="nombre" type="text" autocomplete="name" required></div>
+        <div class="field"><label for="f-empresa">Empresa</label><input id="f-empresa" name="empresa" type="text" autocomplete="organization" required></div>
+      </div>
+      <div class="form-row">
+        <div class="field"><label for="f-email">Correo</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="f-tel">Teléfono <span style="text-transform:none;letter-spacing:0">(opcional)</span></label><input id="f-tel" name="telefono" type="tel" autocomplete="tel"></div>
+      </div>
+      <div class="field">
+        <label for="f-proceso">¿Qué proceso te quita más tiempo?</label>
+        <select id="f-proceso" name="proceso">
+          <option>Pedidos y ventas</option>
+          <option>Facturación y cobros</option>
+          <option>Reportes y control de gestión</option>
+          <option>Atención al cliente</option>
+          <option>Compras y proveedores</option>
+          <option>Todavía no lo tengo claro</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="f-msg">Cuéntanoslo en una línea</label>
+        <textarea id="f-msg" name="mensaje" placeholder="Ej.: los pedidos llegan por WhatsApp y alguien los pasa a mano al sistema."></textarea>
+      </div>
+      <button class="btn btn-primary" type="submit" style="width:100%">Solicitar diagnóstico</button>
+      <p class="form-note">Respondemos en menos de un día laborable. No usamos tus datos para nada que no sea esta conversación.</p>
+      <p class="form-msg" id="formMsg" role="status"></p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot-in">
+    <div class="stack-sm" style="max-width:34ch">
+      <a class="brand" href="#top">
+        <span class="medal" style="width:34px;height:34px" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 21.5V11.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M12.2 12.3c-.2-3.4 2-6 5.7-6.7.4 4.2-1.9 6.9-5.7 6.7Z" fill="currentColor" opacity=".92"/><path d="M11.7 14.6c-.2-2.7-2-4.6-4.9-5-.2 3.3 1.7 5.4 4.9 5Z" fill="currentColor" opacity=".5"/></svg>
+        </span>
+        <span class="brand-name">Todas las Intenciones<span>Donde las ideas surgen de la acción</span></span>
+      </a>
+      <p class="small">Automatización, integración de sistemas e inteligencia artificial aplicada a la operación de empresas en crecimiento.</p>
+    </div>
+    <div class="stack-sm">
+      <a href="#servicios">Servicios</a>
+      <a href="#proceso">Cómo trabajamos</a>
+      <a href="#faq">Preguntas frecuentes</a>
+      <a href="#diagnostico">Agendar diagnóstico</a>
+    </div>
+    <div class="todo">
+      <b>Pendiente antes de publicar</b>
+      Sustituir por datos reales: correo y teléfono de contacto, enlace de agenda, dominio en el marcado structured data, aviso legal, política de privacidad y cookies, y los tres casos de éxito. Confirmar con la empresa las garantías del bloque final antes de publicarlas.
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  document.documentElement.setAttribute("lang","es");
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---- sticky nav ---- */
+  var nav = document.getElementById("nav");
+  var onScroll = function(){ nav.classList.toggle("is-stuck", window.scrollY > 12); };
+  onScroll(); window.addEventListener("scroll", onScroll, {passive:true});
+
+  /* ---- reveal on scroll ---- */
+  var rv = Array.prototype.slice.call(document.querySelectorAll(".rv"));
+  if (reduce || !("IntersectionObserver" in window)) {
+    rv.forEach(function(el){ el.classList.add("in"); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (!e.isIntersecting) return;
+        var el = e.target;
+        var sibs = Array.prototype.slice.call(el.parentNode.children).filter(function(n){ return n.classList.contains("rv"); });
+        var i = Math.min(sibs.indexOf(el), 5);
+        el.style.transitionDelay = (i * 90) + "ms";
+        el.classList.add("in");
+        io.unobserve(el);
+      });
+    }, {rootMargin:"0px 0px -8% 0px", threshold:0.08});
+    rv.forEach(function(el){ io.observe(el); });
+  }
+
+  /* ---- contadores ---- */
+  var counters = Array.prototype.slice.call(document.querySelectorAll("[data-count]"));
+  var runCount = function(el){
+    var target = parseFloat(el.getAttribute("data-count"));
+    var suffix = el.getAttribute("data-suffix") || "";
+    if (reduce || target === 0){ el.textContent = target + suffix; return; }
+    var t0 = null, dur = 1300;
+    var tick = function(ts){
+      if (t0 === null) t0 = ts;
+      var p = Math.min((ts - t0) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * eased) + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+  if ("IntersectionObserver" in window){
+    var cio = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if (e.isIntersecting){ runCount(e.target); cio.unobserve(e.target); } });
+    }, {threshold:0.5});
+    counters.forEach(function(el){ cio.observe(el); });
+  } else { counters.forEach(runCount); }
+
+  /* ---- FAQ ---- */
+  Array.prototype.slice.call(document.querySelectorAll(".q")).forEach(function(q, i){
+    var btn = q.querySelector("button");
+    var panel = q.querySelector(".a");
+    var id = "faq-a-" + (i + 1);
+    panel.id = id;
+    btn.setAttribute("aria-controls", id);
+    btn.addEventListener("click", function(){
+      var open = q.classList.toggle("is-open");
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+  });
+
+  /* ---- antes / después: emparejar filas ---- */
+  var rows = Array.prototype.slice.call(document.querySelectorAll(".plist li[data-pair]"));
+  var setPair = function(pair, on){
+    rows.forEach(function(r){
+      if (r.getAttribute("data-pair") === pair) r.classList.toggle("is-linked", on);
+    });
+  };
+  rows.forEach(function(r){
+    var p = r.getAttribute("data-pair");
+    r.addEventListener("mouseenter", function(){ setPair(p, true); });
+    r.addEventListener("mouseleave", function(){ setPair(p, false); });
+    r.addEventListener("focus", function(){ setPair(p, true); });
+  });
+
+  /* ---- nodos vivos en el hero ---- */
+  var cv = document.getElementById("nodes");
+  if (cv && cv.getContext){
+    var ctx = cv.getContext("2d");
+    var host = cv.parentNode, dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var W = 0, H = 0, pts = [];
+    var build = function(){
+      var r = host.getBoundingClientRect();
+      W = Math.max(r.width, 320); H = Math.max(r.height, 320);
+      cv.width = W * dpr; cv.height = H * dpr;
+      cv.style.width = W + "px"; cv.style.height = H + "px";
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      var n = W < 700 ? 16 : 30;
+      pts = [];
+      for (var i = 0; i < n; i++){
+        pts.push({
+          x: Math.random() * W,
+          y: Math.random() * H,
+          vx: (Math.random() - .5) * .12,
+          vy: (Math.random() - .5) * .12,
+          r: Math.random() * 1.3 + .5
+        });
+      }
+    };
+    var draw = function(){
+      ctx.clearRect(0, 0, W, H);
+      for (var i = 0; i < pts.length; i++){
+        var a = pts[i];
+        for (var j = i + 1; j < pts.length; j++){
+          var b = pts[j], dx = a.x - b.x, dy = a.y - b.y, d = Math.sqrt(dx * dx + dy * dy);
+          if (d < 165){
+            ctx.strokeStyle = "rgba(125,170,109," + (0.12 * (1 - d / 165)).toFixed(3) + ")";
+            ctx.lineWidth = 1;
+            ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+          }
+        }
+        ctx.fillStyle = "rgba(169,206,140,.34)";
+        ctx.beginPath(); ctx.arc(a.x, a.y, a.r, 0, 6.2832); ctx.fill();
+      }
+    };
+    var step = function(){
+      for (var i = 0; i < pts.length; i++){
+        var p = pts[i];
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0 || p.x > W) p.vx *= -1;
+        if (p.y < 0 || p.y > H) p.vy *= -1;
+      }
+      draw();
+      requestAnimationFrame(step);
+    };
+    build(); draw();
+    if (!reduce) requestAnimationFrame(step);
+    var rt;
+    window.addEventListener("resize", function(){
+      clearTimeout(rt);
+      rt = setTimeout(function(){ build(); draw(); }, 180);
+    });
+  }
+
+  /* ---- formulario (prototipo: aún no envía) ---- */
+  var form = document.getElementById("form"), msg = document.getElementById("formMsg");
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    var missing = Array.prototype.slice.call(form.querySelectorAll("[required]")).filter(function(f){ return !f.value.trim(); });
+    var mail = form.querySelector("#f-email");
+    if (missing.length){
+      msg.textContent = "Faltan datos: completa nombre, empresa y correo para continuar.";
+      msg.classList.add("is-on"); missing[0].focus(); return;
+    }
+    if (mail.value.indexOf("@") < 1 || mail.value.indexOf(".") < 0){
+      msg.textContent = "Revisa el correo: parece que falta algo.";
+      msg.classList.add("is-on"); mail.focus(); return;
+    }
+    msg.textContent = "Prototipo: el formulario todavía no envía datos. Antes de publicar hay que conectarlo al CRM o al correo de la empresa y registrar el evento de conversión.";
+    msg.classList.add("is-on");
+  });
+})();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://TU-DOMINIO.com/#organizacion",
+      "name": "Todas las Intenciones",
+      "slogan": "Donde las ideas surgen de la acción",
+      "description": "Consultora de automatización de procesos, integración de sistemas e inteligencia artificial aplicada para pymes y empresas en crecimiento.",
+      "url": "https://TU-DOMINIO.com/"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://TU-DOMINIO.com/#sitio",
+      "url": "https://TU-DOMINIO.com/",
+      "name": "Todas las Intenciones",
+      "inLanguage": "es",
+      "publisher": {"@id": "https://TU-DOMINIO.com/#organizacion"}
+    },
+    {
+      "@type": "Service",
+      "name": "Automatización de procesos e inteligencia artificial para empresas",
+      "serviceType": "Automatización de procesos de negocio",
+      "provider": {"@id": "https://TU-DOMINIO.com/#organizacion"},
+      "areaServed": "Latinoamérica y España",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Servicios",
+        "itemListElement": [
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Automatización de procesos"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Inteligencia artificial aplicada"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Integración de sistemas"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Optimización operativa"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Transformación digital"}}
+        ]
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type":"Question","name":"¿Cuánto cuesta un proyecto de automatización?","acceptedAnswer":{"@type":"Answer","text":"El precio depende de cuántos sistemas hay que conectar, cuántas excepciones tiene el proceso y quién lo mantendrá después. Se entrega un presupuesto cerrado por bloques antes de comprometerse."}},
+        {"@type":"Question","name":"¿Cuánto tarda en verse el primer resultado?","acceptedAnswer":{"@type":"Answer","text":"Para un proceso acotado, lo habitual es tener el primer flujo funcionando en producción entre cuatro y ocho semanas. Es un rango orientativo que depende del estado de los datos y de las excepciones del proceso."}},
+        {"@type":"Question","name":"¿Funciona con los sistemas que ya usamos?","acceptedAnswer":{"@type":"Answer","text":"En la mayoría de los casos sí. Se trabaja sobre las herramientas existentes y solo se propone sustituir una cuando el coste de mantenerla supera el de cambiarla."}},
+        {"@type":"Question","name":"¿Qué pasa con la seguridad de nuestra información?","acceptedAnswer":{"@type":"Answer","text":"Cada automatización accede solo a los datos que necesita, las credenciales se guardan en un gestor de secretos y toda la actividad queda registrada. Las cuentas se crean a nombre de la empresa cliente."}},
+        {"@type":"Question","name":"¿Vamos a depender del proveedor para siempre?","acceptedAnswer":{"@type":"Answer","text":"No. Cada flujo se entrega documentado y los accesos son del cliente desde el primer día, de modo que pueda mantenerlo con su equipo u otro proveedor."}},
+        {"@type":"Question","name":"¿Esto va a reemplazar a mi equipo?","acceptedAnswer":{"@type":"Answer","text":"Sustituye el trabajo repetitivo de copiar, revisar y perseguir información. El resultado habitual es atender más volumen con el mismo equipo."}},
+        {"@type":"Question","name":"¿Cómo se calcula el retorno de la inversión?","acceptedAnswer":{"@type":"Answer","text":"Con las horas que consume hoy el proceso, el coste de esa hora en la empresa y el coste de los errores cuando puede medirse. El resultado es un rango, no una promesa."}},
+        {"@type":"Question","name":"¿Sirve para una empresa pequeña?","acceptedAnswer":{"@type":"Answer","text":"Sí. En equipos pequeños se empieza por un solo proceso, el que más tiempo consume, y se amplía cuando ya se paga solo."}}
+      ]
+    }
+  ]
+}
+</script>
+</body>
+</html>
