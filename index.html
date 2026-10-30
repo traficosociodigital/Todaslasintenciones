@@ -11,7 +11,7 @@
 <meta property="og:image" content="assets/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Tu equipo sostiene el sistema. Debería ser al revés.">
+<meta property="og:title" content="Automatiza lo que nadie ve. Se nota en todo lo demás.">
 <meta property="og:description" content="Automatizamos los procesos invisibles que hoy consumen el tiempo de tu gente. Diagnóstico en 45 minutos.">
 <meta property="og:locale" content="es_ES">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -98,9 +98,11 @@ strong{color:var(--ink);font-weight:500}
 .brand-name{font-family:var(--f-sans);font-size:.74rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);line-height:1.25}
 .brand-name span{display:block;font-size:.58rem;letter-spacing:.16em;color:var(--ink-3);font-weight:400}
 .nav-links{display:flex;gap:1.6rem;margin-left:auto;align-items:center}
-.nav-links a{font-size:.82rem;text-decoration:none;color:var(--ink-3);transition:color .25s}
+.nav-links a{font-size:.82rem;text-decoration:none;color:var(--ink-3);transition:color .25s;white-space:nowrap}
 .nav-links a:hover{color:var(--ink)}
-@media (max-width:900px){.nav-links{display:none}}
+@media (max-width:1180px){.nav-links{gap:1.1rem}.nav-links a{font-size:.78rem}.nav-links .btn-sm{padding-inline:.9rem}}
+@media (max-width:1060px){.brand-name span{display:none}}
+@media (max-width:1000px){.nav-links{display:none}.brand-name span{display:block}}
 
 /* ---------- buttons ---------- */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
@@ -114,24 +116,31 @@ strong{color:var(--ink);font-weight:500}
 .btn svg{flex:none}
 
 /* ---------- hero ---------- */
-.hero{padding-top:clamp(3.5rem,7vw,6rem);overflow:hidden}
-.hero-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.75}
-.hero-in{position:relative;z-index:2;text-align:center;display:flex;flex-direction:column;align-items:center;gap:var(--s3)}
-.hero h1{max-width:16ch}
-.hero .lead{max-width:56ch;margin-inline:auto}
+/* La imagen ocupa todo el hero, detrás del título.
+   --hero-pos decide qué parte de la imagen se ve cuando se recorta:
+   primer valor = horizontal, segundo = vertical (0% arriba, 100% abajo). */
+.hero{--hero-pos:50% 60%;position:relative;overflow:hidden;display:flex;align-items:center;
+  min-height:clamp(620px,calc(100vh - 70px),900px);padding-block:clamp(4.5rem,9vw,7rem) clamp(6rem,12vw,9.5rem)}
+.hero-bg{position:absolute;inset:0;z-index:0;margin:0}
+.hero-bg img{width:100%;height:100%;max-width:none;object-fit:cover;object-position:var(--hero-pos);
+  animation:heroIn 1.8s var(--ease) both}
+@keyframes heroIn{from{opacity:0;transform:scale(1.04)}to{opacity:1;transform:none}}
+.hero-shade{position:absolute;inset:0;z-index:1;pointer-events:none;background:
+  radial-gradient(66% 58% at 50% 48%,rgba(8,11,8,.74) 0%,rgba(8,11,8,.48) 55%,rgba(8,11,8,0) 100%),
+  linear-gradient(180deg,rgba(8,11,8,.55) 0%,rgba(8,11,8,.18) 38%,rgba(8,11,8,.30) 72%,var(--ground) 100%)}
+@media (max-width:640px){.hero-shade{background:
+  linear-gradient(180deg,rgba(8,11,8,.62) 0%,rgba(8,11,8,.58) 60%,var(--ground) 100%)}}
+.hero-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.55;z-index:2}
+.hero-in{position:relative;z-index:3;text-align:center;display:flex;flex-direction:column;align-items:center;gap:var(--s3)}
+.hero h1{max-width:none;font-size:clamp(2.5rem,5.4vw,4.5rem);line-height:1.02;text-shadow:0 2px 34px rgba(8,11,8,.75)}
+.hero h1 span{display:inline-block}
+.hero .lead{max-width:56ch;margin-inline:auto;color:var(--ink);text-shadow:0 1px 18px rgba(8,11,8,.8)}
 .hero-q{font-family:var(--f-display);font-style:italic;font-size:clamp(1.05rem,2vw,1.35rem);color:var(--ink-3)}
 .cta-row{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center;margin-top:.4rem}
-.cta-note{font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
-.cta-note b{color:var(--leaf);font-weight:500}
-
-.hero-art{position:relative;z-index:1;margin-top:clamp(-1rem,-1vw,0rem)}
-.hero-art img{width:min(100%,1180px);margin-inline:auto;
-  filter:drop-shadow(0 0 90px rgba(125,170,109,.14))}
-.hero-glow{position:absolute;left:50%;top:2%;width:min(70vw,620px);aspect-ratio:1;transform:translate(-50%,-30%);
-  background:radial-gradient(circle,rgba(169,206,140,.30) 0%,rgba(125,170,109,.10) 34%,rgba(8,11,8,0) 66%);
-  pointer-events:none;z-index:0}
-.hero-fade{position:absolute;left:0;right:0;bottom:-1px;height:34%;
-  background:linear-gradient(180deg,rgba(8,11,8,0),var(--ground) 88%);pointer-events:none;z-index:3}
+.hero .btn-ghost{background:rgba(8,11,8,.45)}
+.cta-note{font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
+.cta-note b{color:var(--leaf-2);font-weight:500}
+@media (prefers-reduced-motion:reduce){.hero-bg img{animation:none}}
 
 /* ---------- soil line ---------- */
 .soilline{position:relative;height:1px;background:linear-gradient(90deg,transparent,var(--line-2) 18%,var(--line-2) 82%,transparent)}
@@ -261,6 +270,74 @@ strong{color:var(--ink);font-weight:500}
 .slot{border:1px dashed rgba(228,235,224,.16);border-radius:3px;padding:1.4rem;display:flex;flex-direction:column;gap:.6rem;min-height:170px}
 .slot .tag{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--clay)}
 .slot p{font-size:.9rem;color:var(--ink-3)}
+.slots-2{grid-template-columns:repeat(2,1fr)}
+@media (max-width:800px){.slots-2{grid-template-columns:1fr}}
+
+/* ---------- ecosistema google ---------- */
+.gstack{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.gtier{display:grid;grid-template-columns:9.6rem 1fr;gap:1.5rem;padding:1.6rem 0;border-bottom:1px solid var(--line)}
+@media (max-width:640px){.gtier{grid-template-columns:1fr;gap:.7rem}}
+.gtier-lab{display:flex;flex-direction:column;gap:.3rem;padding-top:.35rem}
+.gtier-lab b{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--leaf);font-weight:500}
+.gtier-lab span{font-size:.8rem;color:var(--ink-3);line-height:1.45}
+.gtier-txt{display:flex;flex-direction:column;gap:.6rem}
+.gtier-txt h3{font-family:var(--f-display);font-size:1.55rem;font-weight:500;line-height:1.15}
+.gtier-txt p{font-size:.95rem;color:var(--ink-2)}
+.chips-row{display:grid;grid-template-columns:6.4rem 1fr;gap:.8rem;align-items:start;margin-top:.15rem}
+@media (max-width:520px){.chips-row{grid-template-columns:1fr;gap:.4rem}}
+.chips-row>span{font-size:.78rem;color:var(--ink-3);padding-top:.25rem}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem}
+.chips li{font-size:.78rem;color:var(--ink-2);border:1px solid var(--line-2);border-radius:99px;padding:.2rem .75rem;line-height:1.5}
+
+.gflow{border:1px solid var(--line);border-radius:3px;background:var(--soil);overflow:hidden}
+.gflow-steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));padding:1.8rem 1.4rem 1.9rem}
+.gflow-steps li{position:relative;display:flex;flex-direction:column;gap:.45rem;padding-right:1.1rem}
+.gflow-steps li::before{content:"";position:absolute;top:21px;left:42px;right:0;height:1px;background:var(--line-2)}
+.gflow-steps li:last-child::before{display:none}
+.gnum{width:42px;height:42px;border-radius:50%;border:1px solid var(--line-2);display:grid;place-items:center;flex:none;
+  font-size:.74rem;letter-spacing:.06em;color:var(--leaf);background:var(--soil);position:relative;z-index:1;font-variant-numeric:tabular-nums}
+.gtool{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--sand);margin-top:.55rem;line-height:1.4}
+.gflow-steps p{font-size:.88rem;color:var(--ink-2);line-height:1.6}
+@media (max-width:900px){
+  .gflow-steps{grid-template-columns:1fr}
+  .gflow-steps li{display:grid;grid-template-columns:42px 1fr;column-gap:1rem;row-gap:.2rem;padding:0 0 1.3rem}
+  .gflow-steps li:last-child{padding-bottom:0}
+  .gflow-steps li::before{top:42px;bottom:0;left:21px;right:auto;width:1px;height:auto}
+  .gnum{grid-row:1 / span 2}
+  .gtool{margin-top:.7rem}
+}
+.glimits{display:flex;flex-direction:column;gap:1.1rem}
+.glimits h3{font-family:var(--f-display);font-size:1.6rem;font-weight:500;line-height:1.15}
+.gbridge{font-size:.93rem;color:var(--ink-3);max-width:70ch}
+.gbridge a{color:var(--leaf-2);text-underline-offset:3px}
+
+/* ---------- proyecto destacado ---------- */
+.case{border:1px solid var(--line);border-radius:3px;background:var(--soil);overflow:hidden}
+.case-body{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr)}
+@media (max-width:920px){.case-body{grid-template-columns:1fr}}
+.case-main{padding:clamp(1.6rem,3.2vw,2.6rem);display:flex;flex-direction:column;gap:1.35rem}
+.case-title{font-family:var(--f-display);font-size:clamp(2.3rem,4.4vw,3.3rem);font-weight:500;line-height:1;color:var(--ink);letter-spacing:-.01em}
+.case-main>p{font-size:1rem;color:var(--ink-2);max-width:58ch}
+.case-facts{margin:0;border-top:1px solid var(--line)}
+.case-facts>div{display:grid;grid-template-columns:8.2rem 1fr;gap:1rem;padding:.8rem 0;border-bottom:1px solid var(--line)}
+@media (max-width:520px){.case-facts>div{grid-template-columns:1fr;gap:.2rem}}
+.case-facts dt{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);padding-top:.3rem}
+.case-facts dd{margin:0;font-size:.93rem;color:var(--ink-2);line-height:1.6}
+.case-cta{display:flex;flex-wrap:wrap;align-items:center;gap:.8rem 1.2rem;margin-top:.3rem}
+.case-cta .small{color:var(--ink-3);max-width:32ch}
+.case-figs{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border-left:1px solid var(--line)}
+@media (max-width:920px){.case-figs{border-left:0;border-top:1px solid var(--line)}}
+@media (max-width:480px){.case-figs{grid-template-columns:1fr}}
+.fig{background:linear-gradient(180deg,rgba(94,140,97,.07),var(--soil) 62%);padding:1.6rem 1.4rem;display:flex;flex-direction:column;gap:.55rem}
+.fig .v{font-family:var(--f-display);font-size:clamp(2.3rem,3.8vw,3rem);font-weight:500;line-height:1;color:var(--leaf-2);
+  font-variant-numeric:lining-nums tabular-nums;letter-spacing:-.02em;white-space:nowrap}
+.fig .v i{font-style:normal;color:var(--clay)}
+.fig .v s{text-decoration:none;color:var(--ink-3);font-size:.6em;padding-inline:.12em}
+.fig .v s.arr{vertical-align:.22em;padding-inline:.2em}
+.fig .k{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);line-height:1.5}
+.fig .d{font-size:.85rem;color:var(--ink-3);line-height:1.6}
+.case-note{padding:.95rem clamp(1.6rem,3.2vw,2.6rem);border-top:1px solid var(--line);font-size:.8rem;color:var(--ink-3);background:rgba(228,235,224,.015)}
+.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
 /* ---------- form / cta final ---------- */
 .final{background:
@@ -326,6 +403,7 @@ footer{border-top:1px solid var(--line);padding-block:2.6rem;font-size:.85rem;co
       <a href="#comparativa">Antes / Después</a>
       <a href="#servicios">Servicios</a>
       <a href="#proceso">Cómo trabajamos</a>
+      <a href="#casos">Trabajo reciente</a>
       <a href="#faq">Preguntas</a>
       <a class="btn btn-ghost btn-sm" href="#diagnostico">Agendar diagnóstico</a>
     </nav>
@@ -337,11 +415,14 @@ footer{border-top:1px solid var(--line);padding-block:2.6rem;font-size:.85rem;co
 
 <!-- ============ HERO ============ -->
 <section class="hero">
+  <figure class="hero-bg">
+    <img src="assets/hero.webp" width="1800" height="956" alt="Un brote verde sobre la tierra; bajo la superficie, las raíces forman el nombre Todas las Intenciones." fetchpriority="high">
+  </figure>
+  <div class="hero-shade" aria-hidden="true"></div>
   <canvas class="hero-canvas" id="nodes" aria-hidden="true"></canvas>
-  <div class="hero-glow" aria-hidden="true"></div>
   <div class="wrap hero-in">
     <p class="eyebrow center rv">Automatización e inteligencia artificial para empresas</p>
-    <h1 class="rv">Tu equipo sostiene el sistema.<br>Debería ser al revés.</h1>
+    <h1 class="rv"><span>Automatiza lo que nadie ve.</span> <span>Se nota en todo lo demás.</span></h1>
     <p class="lead rv">Conectamos tus procesos, tus datos y tus herramientas para que el trabajo repetitivo deje de depender de que alguien se acuerde. Tu gente vuelve a decidir; el sistema se encarga de sostener.</p>
     <div class="cta-row rv">
       <a class="btn btn-primary" href="#diagnostico">Agendar diagnóstico
@@ -350,10 +431,6 @@ footer{border-top:1px solid var(--line);padding-block:2.6rem;font-size:.85rem;co
       <a class="btn btn-ghost" href="#comparativa">Ver el antes y el después</a>
     </div>
     <p class="cta-note rv">45 minutos · <b>Sin coste</b> · Sales con un mapa de tus procesos</p>
-  </div>
-  <div class="hero-art rv">
-    <img src="assets/hero.webp" width="1800" height="956" alt="Un brote verde sobre la tierra; bajo la superficie, las raíces forman el nombre Todas las Intenciones." fetchpriority="high">
-    <div class="hero-fade" aria-hidden="true"></div>
   </div>
 </section>
 
@@ -608,20 +685,144 @@ footer{border-top:1px solid var(--line);padding-block:2.6rem;font-size:.85rem;co
   </div>
 </section>
 
-<!-- ============ PRUEBA SOCIAL (pendiente de contenido real) ============ -->
+<!-- ============ ECOSISTEMA GOOGLE ============
+     Fuentes (consultadas el 30·10·2026). Revisar si Google cambia licencias o cupos:
+     - Ediciones con AppSheet Core: https://knowledge.workspace.google.com/admin/appsheet/manage-appsheet-in-your-organization
+     - Seguridad de AppSheet Core: https://knowledge.workspace.google.com/admin/appsheet/control-access-to-appsheet-features
+     - Tareas de los bots: https://support.google.com/appsheet?p=tasks
+     - Llamar a Apps Script desde un bot: https://support.google.com/appsheet/answer/11997142
+     - Cupos de Apps Script: https://developers.google.com/apps-script/guides/services/quotas -->
+<section class="pad" id="google">
+  <div class="wrap stack" style="gap:clamp(2.5rem,5vw,4rem)">
+    <div class="split">
+      <div class="rail">
+        <p class="eyebrow rv">Ecosistema Google</p>
+        <h2 class="rv">Si tu empresa ya paga Google Workspace, ya tiene con qué automatizar.</h2>
+        <p class="rv">La mayoría de las ediciones de Workspace, desde Business Starter, incluyen AppSheet Core sin coste adicional, y las cuentas de Workspace pueden usar Apps Script. Con eso y las hojas de cálculo que tu equipo ya usa se pueden automatizar muchos procesos internos sin contratar otra herramienta.</p>
+        <p class="small muted rv">Ediciones, límites y cupos comprobados en la documentación oficial de Google en octubre de 2026.</p>
+      </div>
+      <div class="gstack rv">
+        <div class="gtier">
+          <div class="gtier-lab"><b>Ya lo usas</b><span>Incluido en Google Workspace</span></div>
+          <div class="gtier-txt">
+            <h3>Sheets, Forms, Drive y Gmail</h3>
+            <p>Las hojas de cálculo pasan a ser la base de datos; los formularios, la puerta de entrada; Drive, el archivo; Gmail, el canal de salida. Tu información se queda donde ya está.</p>
+          </div>
+        </div>
+        <div class="gtier">
+          <div class="gtier-lab"><b>AppSheet Core</b><span>Incluido en Business Starter, Standard y Plus, y en otras ediciones</span></div>
+          <div class="gtier-txt">
+            <h3>La aplicación, sin programar</h3>
+            <p>Sobre esas hojas se construye una app web y móvil con formularios validados, vistas por persona y permisos. Sus bots se encargan del trabajo repetitivo.</p>
+            <div class="chips-row"><span>Se activan con</span>
+              <ul class="chips"><li>un cambio en los datos</li><li>un horario</li><li>una respuesta de Google Forms</li><li>una etiqueta de Gmail</li></ul></div>
+            <div class="chips-row"><span>Y pueden</span>
+              <ul class="chips"><li>enviar un correo</li><li>enviar una notificación</li><li>generar un archivo</li><li>llamar a Apps Script</li></ul></div>
+          </div>
+        </div>
+        <div class="gtier">
+          <div class="gtier-lab"><b>Apps Script</b><span>Disponible en las cuentas de Workspace</span></div>
+          <div class="gtier-txt">
+            <h3>El código, cuando hace falta</h3>
+            <p>JavaScript que se ejecuta en los servidores de Google. Envía correos desde Gmail con tu plantilla y los datos de cada cliente, crea eventos en Calendar o documentos en Drive, y se pone en marcha por horario, al llegar un formulario o cuando un bot de AppSheet lo llama.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gflow rv">
+      <div class="dash-head">
+        <span class="t">Ejemplo de flujo</span>
+        <span class="t">AppSheet + Apps Script, sin otra herramienta</span>
+      </div>
+      <ol class="gflow-steps">
+        <li><span class="gnum">01</span><span class="gtool">AppSheet</span><p>Ventas registra el pedido desde el móvil o el navegador, con los campos obligatorios validados.</p></li>
+        <li><span class="gnum">02</span><span class="gtool">Google Sheets</span><p>El pedido queda como una fila: un solo dato, una sola versión.</p></li>
+        <li><span class="gnum">03</span><span class="gtool">Bot de AppSheet</span><p>Cuando el estado pasa a «aprobado», el bot se activa solo.</p></li>
+        <li><span class="gnum">04</span><span class="gtool">Apps Script</span><p>El bot llama a una función que compone el correo con los datos de ese pedido.</p></li>
+        <li><span class="gnum">05</span><span class="gtool">Gmail y Sheets</span><p>El correo sale desde la cuenta de la empresa y la hoja anota cuándo se envió.</p></li>
+      </ol>
+    </div>
+
+    <div class="split">
+      <div class="glimits rv">
+        <h3>Lo que conviene saber antes de empezar.</h3>
+        <p class="muted">Incluido no significa ilimitado. Estos son los límites que más condicionan un proyecto, y los revisamos en el diagnóstico.</p>
+      </div>
+      <dl class="case-facts rv">
+        <div><dt>Quién usa la app</dt><dd>AppSheet Core sirve para apps que usan personas de tu organización. Compartirlas con usuarios externos o usar integraciones avanzadas requiere AppSheet Enterprise Plus, que se paga aparte.</dd></div>
+        <div><dt>Correos a clientes</dt><dd>Si el administrador mantiene activada la seguridad de AppSheet Core, AppSheet no envía correos automáticos a destinatarios externos ni llama a webhooks. Para las licencias asignadas desde julio de 2023 viene activada por defecto. Se revisa con tu administrador antes de construir.</dd></div>
+        <div><dt>Cupos de Apps Script</dt><dd>Por cuenta de Workspace: hasta 1.500 destinatarios de correo al día (2.000 dentro de tu dominio), 50 por mensaje y 6 minutos por ejecución. Google puede cambiarlos sin aviso, y las cuentas en periodo de prueba tienen límites menores.</dd></div>
+        <div><dt>Requisitos</dt><dd>Dominio verificado en Google Workspace, y AppSheet y Apps Script activados por el administrador.</dd></div>
+        <div><dt>Cuándo no basta</dt><dd>Si el proceso depende de sistemas fuera de Google o el volumen supera esos cupos, puede hacer falta otra pieza. Si es tu caso, te lo decimos en el diagnóstico, con su coste.</dd></div>
+      </dl>
+    </div>
+
+    <p class="gbridge rv">El CRM del <a href="#casos">proyecto de la sección siguiente</a> está construido sobre AppSheet y Google Sheets. Sus automatizaciones de correo y de documentos, en cambio, corren en n8n, un orquestador externo.</p>
+  </div>
+</section>
+
+<!-- ============ TRABAJO RECIENTE ============
+     Todas las cifras de este bloque proceden de la memoria enlazada
+     (segunda edición, 18·09·2026). Si la memoria se actualiza, revisar aquí. -->
 <section class="pad" id="casos">
   <div class="wrap stack">
     <div class="stack-sm rv" style="max-width:60ch">
-      <p class="eyebrow">Prueba social</p>
-      <h2>Aquí van tus casos reales.</h2>
-      <p class="lead">No inventamos testimonios ni resultados. Estos tres espacios están reservados para clientes reales; cada uno necesita el permiso por escrito de la empresa y una cifra que se pueda sostener.</p>
+      <p class="eyebrow">Trabajo reciente</p>
+      <h2>Un proyecto real, contado entero.</h2>
+      <p class="lead">Cada proyecto se documenta como una memoria: qué se encontró, qué se construyó, qué falló y qué sigue abierto. Esta es la del proyecto en curso, publicada completa y sin identificar a la empresa.</p>
     </div>
-    <div class="slots rv">
-      <div class="slot">
-        <span class="tag">Caso 01 · pendiente</span>
-        <p><strong>Qué recoger:</strong> sector y tamaño de la empresa, proceso automatizado, situación antes, situación después y una cifra verificable.</p>
-        <p class="small">Ideal: una frase textual del responsable de operaciones.</p>
+
+    <article class="case rv" aria-labelledby="case-title">
+      <div class="dash-head">
+        <span class="t">Proyecto en curso</span>
+        <span class="t">Memoria, segunda edición · 18 de septiembre de 2026</span>
       </div>
+      <div class="case-body">
+        <div class="case-main">
+          <h3 class="case-title" id="case-title">CRM en 25 días</h3>
+          <p>Una firma de contabilidad que trabajaba con seis sistemas paralelos sin conectar pasó a tener un CRM propio con permisos por departamento, cinco automatizaciones en producción y su repositorio documental enlazado a la ficha de cada cliente.</p>
+          <dl class="case-facts">
+            <div><dt>Dónde</dt><dd>Despacho de contabilidad y asesoría financiera en Guaynabo, Puerto Rico. 14 personas, unos 170 clientes.</dd></div>
+            <div><dt>Periodo documentado</dt><dd>Del 7 de agosto al 18 de septiembre de 2026, en dos fases: 25 días para el CRM y 17 para la capa de automatización.</dd></div>
+            <div><dt>Rol</dt><dd>Diagnóstico, arquitectura de datos, construcción y automatización.</dd></div>
+            <div><dt>Herramientas</dt><dd>Google AppSheet, Google Sheets, n8n Cloud y Google Drive, migrando desde Zoho CRM Plus.</dd></div>
+          </dl>
+          <div class="case-cta">
+            <a class="btn btn-primary" href="https://adoptar-crm-abs.netlify.app/" target="_blank" rel="noopener">Leer la memoria del proyecto<span class="sr"> (se abre en una pestaña nueva)</span>
+              <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M4 2.5h7.5V10M11.5 2.5 2.5 11.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <p class="small">Diagnóstico, arquitectura, automatizaciones, fallos y pendientes, con su evidencia.</p>
+          </div>
+        </div>
+        <div class="case-figs">
+          <div class="fig">
+            <span class="v"><i>2</i><s class="arr">→</s>74</span>
+            <span class="k">Tratos en el pipeline</span>
+            <span class="d">El CRM anterior tenía dos oportunidades registradas. Cada trato nuevo se construyó leyendo el contrato del cliente.</span>
+          </div>
+          <div class="fig">
+            <span class="v">2.607</span>
+            <span class="k">Registros maestros migrados</span>
+            <span class="d">Migrados y verificados desde un CRM comercial que el equipo había dejado de usar.</span>
+          </div>
+          <div class="fig">
+            <span class="v">24<s>/</s>24</span>
+            <span class="k">Correos aceptados en el primer envío</span>
+            <span class="d">El comunicado mensual de cumplimiento sustituye una petición que se hacía a mano cada mes: 27 negocios cubiertos en 21,9 segundos.</span>
+          </div>
+          <div class="fig">
+            <span class="v">605<s>/</s>607</span>
+            <span class="k">Carpetas de cliente enlazadas</span>
+            <span class="d">Con 4.140 documentos indexados y consultables desde la ficha. Las dos restantes se reportaron en lugar de adivinarse.</span>
+          </div>
+        </div>
+      </div>
+      <p class="case-note">Cifras medidas en los sistemas entre el 1 y el 18 de septiembre de 2026. La memoria documenta con el mismo detalle lo que no salió bien y lo que sigue pendiente.</p>
+    </article>
+
+    <!-- Espacios reservados para los siguientes casos. Quitar antes de publicar si no hay contenido real. -->
+    <div class="slots slots-2 rv">
       <div class="slot">
         <span class="tag">Caso 02 · pendiente</span>
         <p><strong>Qué recoger:</strong> un caso con un sistema heredado difícil, para responder a la objeción «lo nuestro es muy particular».</p>
@@ -721,12 +922,14 @@ footer{border-top:1px solid var(--line);padding-block:2.6rem;font-size:.85rem;co
     <div class="stack-sm">
       <a href="#servicios">Servicios</a>
       <a href="#proceso">Cómo trabajamos</a>
+      <a href="#google">Automatizar con Google Workspace</a>
+      <a href="#casos">Trabajo reciente</a>
       <a href="#faq">Preguntas frecuentes</a>
       <a href="#diagnostico">Agendar diagnóstico</a>
     </div>
     <div class="todo">
       <b>Pendiente antes de publicar</b>
-      Sustituir por datos reales: correo y teléfono de contacto, enlace de agenda, dominio en el marcado structured data, aviso legal, política de privacidad y cookies, y los tres casos de éxito. Confirmar con la empresa las garantías del bloque final antes de publicarlas.
+      Sustituir por datos reales: correo y teléfono de contacto, enlace de agenda, dominio en el marcado structured data, aviso legal, política de privacidad y cookies, y los casos 02 y 03 de la sección de trabajo reciente. Confirmar con la empresa las garantías del bloque final antes de publicarlas.
     </div>
   </div>
 </footer>
