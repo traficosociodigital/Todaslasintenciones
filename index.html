@@ -264,15 +264,6 @@ strong{color:var(--ink);font-weight:500}
 .q .a p{padding-bottom:1.35rem;padding-right:2.6rem;color:var(--ink-3);font-size:.95rem;max-width:70ch}
 @media (max-width:640px){.q .a p{padding-right:0}}
 
-/* ---------- placeholder prueba social ---------- */
-.slots{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
-@media (max-width:800px){.slots{grid-template-columns:1fr}}
-.slot{border:1px dashed rgba(228,235,224,.16);border-radius:3px;padding:1.4rem;display:flex;flex-direction:column;gap:.6rem;min-height:170px}
-.slot .tag{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--clay)}
-.slot p{font-size:.9rem;color:var(--ink-3)}
-.slots-2{grid-template-columns:repeat(2,1fr)}
-@media (max-width:800px){.slots-2{grid-template-columns:1fr}}
-
 /* ---------- ecosistema google ---------- */
 .gstack{display:flex;flex-direction:column;border-top:1px solid var(--line)}
 .gtier{display:grid;grid-template-columns:9.6rem 1fr;gap:1.5rem;padding:1.6rem 0;border-bottom:1px solid var(--line)}
@@ -367,8 +358,6 @@ footer{border-top:1px solid var(--line);padding-block:2.6rem;font-size:.85rem;co
 .foot-in{display:flex;flex-wrap:wrap;gap:1.4rem;justify-content:space-between;align-items:flex-start}
 .foot-in a{color:var(--ink-3);text-decoration:none}
 .foot-in a:hover{color:var(--leaf-2)}
-.todo{border:1px dashed rgba(185,128,85,.4);border-radius:3px;padding:.9rem 1rem;font-size:.8rem;color:var(--ink-3);max-width:52ch}
-.todo b{color:var(--clay);font-weight:500;letter-spacing:.14em;text-transform:uppercase;font-size:.68rem;display:block;margin-bottom:.35rem}
 
 /* ---------- reveal ---------- */
 .rv{opacity:0;transform:translateY(18px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
@@ -820,20 +809,6 @@ footer{border-top:1px solid var(--line);padding-block:2.6rem;font-size:.85rem;co
       </div>
       <p class="case-note">Cifras medidas en los sistemas entre el 1 y el 18 de septiembre de 2026. La memoria documenta con el mismo detalle lo que no salió bien y lo que sigue pendiente.</p>
     </article>
-
-    <!-- Espacios reservados para los siguientes casos. Quitar antes de publicar si no hay contenido real. -->
-    <div class="slots slots-2 rv">
-      <div class="slot">
-        <span class="tag">Caso 02 · pendiente</span>
-        <p><strong>Qué recoger:</strong> un caso con un sistema heredado difícil, para responder a la objeción «lo nuestro es muy particular».</p>
-        <p class="small">Ideal: nombre, cargo y foto con autorización.</p>
-      </div>
-      <div class="slot">
-        <span class="tag">Caso 03 · pendiente</span>
-        <p><strong>Qué recoger:</strong> un cliente de más de un año, que demuestre que el sistema se mantiene solo.</p>
-        <p class="small">Ideal: qué hacen hoy con las horas recuperadas.</p>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -926,10 +901,6 @@ footer{border-top:1px solid var(--line);padding-block:2.6rem;font-size:.85rem;co
       <a href="#casos">Trabajo reciente</a>
       <a href="#faq">Preguntas frecuentes</a>
       <a href="#diagnostico">Agendar diagnóstico</a>
-    </div>
-    <div class="todo">
-      <b>Pendiente antes de publicar</b>
-      Sustituir por datos reales: correo y teléfono de contacto, enlace de agenda, dominio en el marcado structured data, aviso legal, política de privacidad y cookies, y los casos 02 y 03 de la sección de trabajo reciente. Confirmar con la empresa las garantías del bloque final antes de publicarlas.
     </div>
   </div>
 </footer>
