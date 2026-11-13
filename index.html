@@ -352,6 +352,7 @@ strong{color:var(--ink);font-weight:500}
 .guarantee{display:flex;flex-direction:column;gap:.9rem}
 .guarantee li{display:flex;gap:.75rem;font-size:.93rem;color:var(--ink-2);align-items:flex-start}
 .guarantee svg{flex:none;color:var(--leaf);margin-top:.28rem}
+.final-contact a,.form-msg a{color:var(--leaf-2);text-underline-offset:3px}
 
 /* ---------- footer ---------- */
 footer{border-top:1px solid var(--line);padding-block:2.6rem;font-size:.85rem;color:var(--ink-3)}
@@ -419,7 +420,7 @@ footer{border-top:1px solid var(--line);padding-block:2.6rem;font-size:.85rem;co
       </a>
       <a class="btn btn-ghost" href="#comparativa">Ver el antes y el después</a>
     </div>
-    <p class="cta-note rv">45 minutos · <b>Sin coste</b> · Sales con un mapa de tus procesos</p>
+    <p class="cta-note rv">45 minutos · <b>Sin coste si contratas</b> · Sales con un mapa de tus procesos</p>
   </div>
 </section>
 
@@ -821,7 +822,7 @@ footer{border-top:1px solid var(--line);padding-block:2.6rem;font-size:.85rem;co
       <p class="rv">Si tu duda no está aquí, escríbela en el formulario: la respondemos antes de la reunión.</p>
     </div>
     <div class="faq rv" id="faqlist">
-      <div class="q"><button type="button" aria-expanded="false">¿Cuánto cuesta un proyecto de automatización?</button><div class="a"><div><p>No damos una cifra antes del diagnóstico, porque sería inventarla. El precio depende de tres cosas: cuántos sistemas hay que conectar, cuántas excepciones tiene el proceso y quién lo va a mantener después. Lo que sí garantizamos es que recibirás un presupuesto cerrado por bloques —diagnóstico, diseño, construcción, puesta en marcha— antes de comprometerte a nada.</p></div></div></div>
+      <div class="q"><button type="button" aria-expanded="false">¿Cuánto cuesta un proyecto de automatización?</button><div class="a"><div><p>No damos una cifra antes del diagnóstico, porque sería inventarla. El precio depende de tres cosas: cuántos sistemas hay que conectar, cuántas excepciones tiene el proceso y quién lo va a mantener después. Lo que sí garantizamos es que recibirás un presupuesto cerrado por bloques —diagnóstico, diseño, construcción, puesta en marcha— antes de comprometerte a nada. La visita de diagnóstico y la auditoría se cobran aparte, con un importe que te informamos antes de agendarlas, y no las pagas si contratas el proyecto.</p></div></div></div>
       <div class="q"><button type="button" aria-expanded="false">¿Cuánto tarda en verse el primer resultado?</button><div class="a"><div><p>Para un proceso acotado, lo habitual es tener el primer flujo funcionando en producción entre cuatro y ocho semanas. Es un rango orientativo: si tus datos están dispersos o el proceso tiene muchas excepciones, la fase de diseño se alarga. Preferimos decírtelo en el diagnóstico y no a mitad del proyecto.</p></div></div></div>
       <div class="q"><button type="button" aria-expanded="false">¿Funciona con los sistemas que ya usamos?</button><div class="a"><div><p>En la mayoría de los casos, sí. Trabajamos sobre lo que ya tienes y solo proponemos cambiar una herramienta cuando el coste de mantenerla supera el de sustituirla. Si algún sistema no permite conexión directa, en el diagnóstico se dice claramente y se plantean las alternativas con su coste.</p></div></div></div>
       <div class="q"><button type="button" aria-expanded="false">¿Qué pasa con la seguridad de nuestra información?</button><div class="a"><div><p>Tres reglas fijas: cada automatización accede solo a los datos que necesita, las credenciales se guardan en un gestor de secretos y nunca en el código, y todo queda registrado para saber quién hizo qué y cuándo. Las cuentas y accesos se crean a nombre de tu empresa. La configuración concreta y las obligaciones legales de protección de datos que apliquen en tu país deben revisarse con tu asesor: nosotros preparamos la parte técnica y te decimos qué falta.</p></div></div></div>
@@ -829,10 +830,10 @@ footer{border-top:1px solid var(--line);padding-block:2.6rem;font-size:.85rem;co
       <div class="q"><button type="button" aria-expanded="false">¿Necesitamos personal técnico en el equipo?</button><div class="a"><div><p>Para usarlo, no. Los flujos se operan desde las herramientas que tu equipo ya conoce. Sí conviene que haya una persona responsable —normalmente de operaciones— que entienda el proceso y pueda decidir qué hacer con las excepciones. Esa persona recibe formación durante la implementación.</p></div></div></div>
       <div class="q"><button type="button" aria-expanded="false">¿Esto va a reemplazar a mi equipo?</button><div class="a"><div><p>Lo que sustituye es la parte del trabajo que nadie quiere hacer: copiar, pegar, revisar y perseguir información. En las empresas con las que trabajamos el resultado habitual no es tener menos gente, sino que la misma gente atienda más volumen sin que la operación se rompa. Si tu objetivo es reducir plantilla, es una decisión legítima, pero conviene decirlo desde el principio porque cambia el diseño del proyecto.</p></div></div></div>
       <div class="q"><button type="button" aria-expanded="false">¿Cómo se calcula el retorno de la inversión?</button><div class="a"><div><p>Con dos datos que sacamos en el diagnóstico: cuántas horas al mes consume hoy el proceso y cuánto cuesta esa hora en tu empresa. A eso se le suma el coste de los errores —facturas rehechas, pedidos perdidos, cobros que se retrasan— cuando se puede medir. El resultado es un rango, no una promesa: te enseñamos el cálculo para que puedas discutirlo.</p></div></div></div>
-      <div class="q"><button type="button" aria-expanded="false">¿Y si nuestros procesos no están documentados?</button><div class="a"><div><p>Es la situación normal, no la excepción. Casi nadie llega con los procesos escritos. Parte del diagnóstico consiste precisamente en levantarlos observando cómo trabaja el equipo. Ese mapa es tuyo aunque después decidas no seguir adelante.</p></div></div></div>
+      <div class="q"><button type="button" aria-expanded="false">¿Y si nuestros procesos no están documentados?</button><div class="a"><div><p>Es la situación normal, no la excepción. Casi nadie llega con los procesos escritos. Parte del diagnóstico consiste precisamente en levantarlos observando cómo trabaja el equipo.</p></div></div></div>
       <div class="q"><button type="button" aria-expanded="false">¿Qué pasa cuando el proceso cambia?</button><div class="a"><div><p>Los flujos se construyen por bloques para que un cambio afecte a una pieza y no a todo. Los cambios de reglas —un precio, un responsable, un plazo— se ajustan en configuración, sin tocar el flujo. Los cambios estructurales se planifican como una mejora más dentro de la fase de optimización continua.</p></div></div></div>
       <div class="q"><button type="button" aria-expanded="false">¿Sirve para una empresa pequeña?</button><div class="a"><div><p>Sí, y a veces es donde más se nota: cuando son cinco personas, cada hora perdida en tareas administrativas pesa mucho más. Lo que cambia es el alcance. En empresas pequeñas empezamos por un solo proceso, el que más duele, y se amplía cuando ya está pagándose solo.</p></div></div></div>
-      <div class="q"><button type="button" aria-expanded="false">¿Cómo empezamos?</button><div class="a"><div><p>Con una conversación de 45 minutos en la que nos cuentas cómo entra el trabajo hoy y dónde se atasca. De ahí sale el mapa de procesos y la lista priorizada. No hay coste y no compromete a nada: si al terminar decides no seguir, el mapa se queda contigo igualmente.</p></div></div></div>
+      <div class="q"><button type="button" aria-expanded="false">¿Cómo empezamos?</button><div class="a"><div><p>Con una visita de diagnóstico de 45 minutos en la que nos cuentas cómo entra el trabajo hoy y dónde se atasca. De ahí sale el mapa de procesos y la lista priorizada. La visita y la auditoría tienen un coste que te informamos antes de agendarlas; si contratas el servicio, no las pagas.</p></div></div></div>
     </div>
   </div>
 </section>
@@ -845,11 +846,11 @@ footer{border-top:1px solid var(--line);padding-block:2.6rem;font-size:.85rem;co
       <h2 class="rv">Cada semana que el proceso sigue siendo manual cuesta horas que no vuelven.</h2>
       <p class="lead rv">No hace falta que tengas claro qué automatizar. Solo hace falta que sepas qué parte de tu semana te gustaría no volver a repetir. De eso hablamos en 45 minutos.</p>
       <ul class="guarantee rv">
-        <li><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5 6.3 12 13 4.5"/></svg><span>El diagnóstico no compromete a nada. Si decides no seguir, el mapa de procesos se queda contigo.</span></li>
+        <li><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5 6.3 12 13 4.5"/></svg><span>La visita de diagnóstico y la auditoría tienen un coste que te informamos antes de agendarlas. Si contratas el servicio, no las pagas.</span></li>
         <li><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5 6.3 12 13 4.5"/></svg><span>Presupuesto cerrado por bloques antes de empezar. Sin horas abiertas ni sorpresas a mitad de camino.</span></li>
         <li><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5 6.3 12 13 4.5"/></svg><span>Accesos, cuentas y documentación a nombre de tu empresa desde el primer día.</span></li>
-        <li><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5 6.3 12 13 4.5"/></svg><span>Si el diagnóstico concluye que automatizar no es tu prioridad, te lo decimos y no facturamos nada.</span></li>
       </ul>
+      <p class="small rv final-contact">¿Prefieres escribirnos directamente? <a href="mailto:contacto@todaslasintenciones.com">contacto@todaslasintenciones.com</a> · <a href="https://wa.me/573116845594" target="_blank" rel="noopener">WhatsApp +57 311 684 5594<span class="sr"> (se abre en una pestaña nueva)</span></a></p>
     </div>
     <form class="formcard rv" id="form" novalidate>
       <div class="form-row">
@@ -901,6 +902,10 @@ footer{border-top:1px solid var(--line);padding-block:2.6rem;font-size:.85rem;co
       <a href="#casos">Trabajo reciente</a>
       <a href="#faq">Preguntas frecuentes</a>
       <a href="#diagnostico">Agendar diagnóstico</a>
+    </div>
+    <div class="stack-sm">
+      <a href="mailto:contacto@todaslasintenciones.com">contacto@todaslasintenciones.com</a>
+      <a href="https://wa.me/573116845594" target="_blank" rel="noopener">WhatsApp +57 311 684 5594<span class="sr"> (se abre en una pestaña nueva)</span></a>
     </div>
   </div>
 </footer>
@@ -1058,7 +1063,7 @@ footer{border-top:1px solid var(--line);padding-block:2.6rem;font-size:.85rem;co
       msg.textContent = "Revisa el correo: parece que falta algo.";
       msg.classList.add("is-on"); mail.focus(); return;
     }
-    msg.textContent = "Prototipo: el formulario todavía no envía datos. Antes de publicar hay que conectarlo al CRM o al correo de la empresa y registrar el evento de conversión.";
+    msg.innerHTML = 'Por ahora este formulario no envía tu solicitud. Escríbenos a <a href="mailto:contacto@todaslasintenciones.com">contacto@todaslasintenciones.com</a> o por <a href="https://wa.me/573116845594" target="_blank" rel="noopener">WhatsApp (+57 311 684 5594)</a> y la atendemos desde ahí.';
     msg.classList.add("is-on");
   });
 })();
@@ -1074,7 +1079,15 @@ footer{border-top:1px solid var(--line);padding-block:2.6rem;font-size:.85rem;co
       "name": "Todas las Intenciones",
       "slogan": "Donde las ideas surgen de la acción",
       "description": "Consultora de automatización de procesos, integración de sistemas e inteligencia artificial aplicada para pymes y empresas en crecimiento.",
-      "url": "https://www.todaslasintenciones.com/"
+      "url": "https://www.todaslasintenciones.com/",
+      "email": "contacto@todaslasintenciones.com",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "email": "contacto@todaslasintenciones.com",
+        "url": "https://wa.me/573116845594",
+        "availableLanguage": "es"
+      }
     },
     {
       "@type": "WebSite",
@@ -1105,7 +1118,7 @@ footer{border-top:1px solid var(--line);padding-block:2.6rem;font-size:.85rem;co
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type":"Question","name":"¿Cuánto cuesta un proyecto de automatización?","acceptedAnswer":{"@type":"Answer","text":"El precio depende de cuántos sistemas hay que conectar, cuántas excepciones tiene el proceso y quién lo mantendrá después. Se entrega un presupuesto cerrado por bloques antes de comprometerse."}},
+        {"@type":"Question","name":"¿Cuánto cuesta un proyecto de automatización?","acceptedAnswer":{"@type":"Answer","text":"El precio depende de cuántos sistemas hay que conectar, cuántas excepciones tiene el proceso y quién lo mantendrá después. Se entrega un presupuesto cerrado por bloques antes de comprometerse. La visita de diagnóstico y la auditoría se cobran aparte, con un importe que se informa antes de agendarlas, y no se cobran si se contrata el servicio."}},
         {"@type":"Question","name":"¿Cuánto tarda en verse el primer resultado?","acceptedAnswer":{"@type":"Answer","text":"Para un proceso acotado, lo habitual es tener el primer flujo funcionando en producción entre cuatro y ocho semanas. Es un rango orientativo que depende del estado de los datos y de las excepciones del proceso."}},
         {"@type":"Question","name":"¿Funciona con los sistemas que ya usamos?","acceptedAnswer":{"@type":"Answer","text":"En la mayoría de los casos sí. Se trabaja sobre las herramientas existentes y solo se propone sustituir una cuando el coste de mantenerla supera el de cambiarla."}},
         {"@type":"Question","name":"¿Qué pasa con la seguridad de nuestra información?","acceptedAnswer":{"@type":"Answer","text":"Cada automatización accede solo a los datos que necesita, las credenciales se guardan en un gestor de secretos y toda la actividad queda registrada. Las cuentas se crean a nombre de la empresa cliente."}},
